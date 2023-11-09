@@ -57,7 +57,7 @@ class Property extends Field{
     @Override
     public boolean doAction(Game game){
         boolean canPay = false;
-        if(owner.getName() == "Bank"){
+        if(owner.getName().equals("Bank")){
             canPay = buyProperty(game.getCurrentPlayer());
         } else if(owner instanceof Player && owner != game.getCurrentPlayer()){
             canPay = payRent(game.getCurrentPlayer());

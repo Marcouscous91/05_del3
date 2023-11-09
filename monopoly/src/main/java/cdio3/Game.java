@@ -13,6 +13,7 @@ class Game {
     public Game(int numberOfPlayers){
         this.numberOfPlayers = numberOfPlayers;
         bank = new Bank();
+        bank.setBalance(90);
         die = new Die(1, 6);
         createPlayers(numberOfPlayers);
         board = new Board(bank);
@@ -21,10 +22,13 @@ class Game {
     }
 
     public void play(){
-        for(int i = 1; i <= numberOfPlayers; i++){
+        Scanner pressEnter = new Scanner(System.in);
+        for(int i = 0; i < numberOfPlayers; i++){
+            System.out.println(players[i].getName() + ", please press enter to roll dice!");
+            pressEnter.nextLine();
             roll(players[i]);
-            if(i == numberOfPlayers){
-                i = 1;
+            if(i == numberOfPlayers - 1){
+                i = -1;
             }
         }
     }
@@ -35,17 +39,20 @@ class Game {
     
     public void movePlayer(int sum){
         currenPlayer.move(sum);
+        String nameOfField = board.getField(currenPlayer.getPosition()).getName();
+        System.out.println("You landed on " + nameOfField);
         board.movePlayer(this);
     }
 
     private void createPlayers(int numberOfPlayers){
         Scanner input = new Scanner(System.in);
-        players = new Player[numberOfPlayers];
+        this.players = new Player[numberOfPlayers];
 
         for(int i = 0; i < players.length; i++){
             System.out.println("Enter name of Player " + (i + 1));
             String playerName = input.nextLine();
-            players[i] = new Player(playerName);
+            this.players[i] = new Player(playerName);
+            bank.transferMoney(this.players[i], 15);  
         }
     }
 

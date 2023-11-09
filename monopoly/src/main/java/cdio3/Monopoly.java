@@ -9,5 +9,6 @@ class Monopoly {
         String command = scanner.nextLine();
         int numberOfPlayers = Integer.parseInt(command);
         Game monopoly = new Game(numberOfPlayers);
+        monopoly.play();
     }
 }

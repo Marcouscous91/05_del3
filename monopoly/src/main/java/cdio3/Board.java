@@ -26,18 +26,18 @@ class Board {
 
     private void createPropertyManager(Actor bank){
         Dictionary<Integer, Property> properties = new Hashtable<>();
-        properties.put(1, new Property("Baker", 20, bank, Color.RED));
-        properties.put(3, new Property("Marcus' House", 100, bank, Color.BROWN));
-        properties.put(4, new Property("Train Station", 50, bank, Color.PURPLE));
-        properties.put(5, new Property("School", 40, bank, Color.RED));
-        properties.put(6, new Property("Police Station", 0, bank, Color.BROWN));
-        properties.put(7, new Property("Restaurant", 150, bank, Color.PURPLE));
+        properties.put(1, new Property("Baker", 2, bank, Color.RED));
+        properties.put(3, new Property("Marcus' House", 1, bank, Color.BROWN));
+        properties.put(4, new Property("Train Station", 1, bank, Color.PURPLE));
+        properties.put(5, new Property("School", 2, bank, Color.RED));
+        properties.put(6, new Property("Police Station", 3, bank, Color.BROWN));
+        properties.put(7, new Property("Restaurant", 2, bank, Color.PURPLE));
        
         propertyManager = new PropertyManager(properties);
     }
 
-    public Field[] getFields() {
-        return fields;
+    public Field getField(int position) {
+        return fields[position];
     }
 
     public boolean movePlayer(Game game){

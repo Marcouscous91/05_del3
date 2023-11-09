@@ -47,12 +47,13 @@ class Player extends Actor{
         super();
         this.position = 0;
         this.inDebt = false;
+        this.name = name;
     }
 
     public void move(int dieSum){
         position += dieSum;
-        if(position > 24){
-            position -= 24;
+        if(position > 7){
+            position -= 7;
         }
     }
 
@@ -102,11 +103,13 @@ class Bank extends Actor{
     public Bank(){
         super();
         this.setBalance(90);
+        this.name = "Bank";
     }
 
     @Override
     public boolean transferMoney(Actor receiver, double amount) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'transferMoney'");
+        this.subtractSum(amount);
+        receiver.addSum(amount);
+        return true;
     }
 }
