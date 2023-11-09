@@ -62,6 +62,7 @@ class PropertyManager{
     }
 
     public void pairProperties(){
+        pairs = new Hashtable<>();
         Property[] red = new Property[]{properties.get(1), properties.get(5)};
         Property[] brown = new Property[]{properties.get(3), properties.get(4)};
         Property[] purple = new Property[]{properties.get(4), properties.get(7)};
