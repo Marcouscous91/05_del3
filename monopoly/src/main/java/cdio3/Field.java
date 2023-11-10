@@ -38,9 +38,9 @@ class Property extends Field{
         canPay = player.transferMoney(owner, cost);
         if(canPay){
             owner = player;
-            System.out.println("You bought " + name + " for " + cost + "M");
+            System.out.println("\nYou bought " + name + " for " + cost + "M");
         } else if(!canPay) {
-            System.out.println("You don't have enough money to buy " + this.name);
+            System.out.println("\nYou don't have enough money to buy " + this.name);
         }
         return canPay;
     }
@@ -49,7 +49,7 @@ class Property extends Field{
         boolean canPay;
         canPay = player.transferMoney(owner, rent);
         if(canPay){
-            System.out.println("You payed " + cost + " M to " + owner.getName() + " in rent");
+            System.out.println("\nYou payed " + cost + " M to " + owner.getName() + " in rent");
         }
         return canPay;
     }

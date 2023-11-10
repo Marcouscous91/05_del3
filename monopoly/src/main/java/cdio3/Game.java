@@ -24,7 +24,7 @@ class Game {
     public void play(){
         Scanner pressEnter = new Scanner(System.in);
         for(int i = 0; i < numberOfPlayers; i++){
-            System.out.println(players[i].getName() + ", please press enter to roll dice!");
+            System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");
             pressEnter.nextLine();
             roll(players[i]);
             if(i == numberOfPlayers - 1){
@@ -40,7 +40,7 @@ class Game {
     public void movePlayer(int sum){
         currenPlayer.move(sum);
         String nameOfField = board.getField(currenPlayer.getPosition()).getName();
-        System.out.println("You landed on " + nameOfField);
+        System.out.println("\nYou landed on " + nameOfField);
         board.movePlayer(this);
     }
 
