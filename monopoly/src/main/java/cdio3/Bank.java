@@ -1,5 +1,10 @@
-public class Bank {
+public class Bank extends
+abstract class Actor {
 public void payToBank(fromPlayer.amount){
-    int pay = 
-}
+
+        public void payToBank(Player fromPlayer, int amount) {
+            int pay = abletopPay(fromPlayer, amount);
+
+        }
+    }
 }
