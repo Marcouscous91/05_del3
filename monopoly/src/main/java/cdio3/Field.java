@@ -7,7 +7,7 @@ abstract class Field {
         this.name = name;
     }
 
-    abstract public boolean doAction(Game game);
+    abstract public boolean doAction(Player player);
 
     public String getName(){
         return name;
@@ -55,12 +55,14 @@ class Property extends Field{
     }
 
     @Override
-    public boolean doAction(Game game){
-        boolean canPay = false;
+    public boolean doAction(Player player){
+        boolean canPay;
         if(owner.getName().equals("Bank")){
-            canPay = buyProperty(game.getCurrentPlayer());
-        } else if(owner instanceof Player && owner != game.getCurrentPlayer()){
-            canPay = payRent(game.getCurrentPlayer());
+            canPay = buyProperty(player);
+        } else if(owner instanceof Player && owner != player){
+            canPay = payRent(player);
+        } else {
+            return true;
         }
         return canPay;
     }
@@ -74,8 +76,8 @@ class Prison extends Field{
     }
 
     @Override
-    public boolean doAction(Game game){
-        game.getCurrentPlayer().ToPrison();
+    public boolean doAction(Player player){
+        player.ToPrison();
         System.out.println("You done gone to prison");
         return true;
     }
@@ -88,8 +90,8 @@ class Start extends Field{
     }
 
     @Override
-    public boolean doAction(Game game){
-        game.getCurrentPlayer().addSum(2);
+    public boolean doAction(Player player){
+        player.addSum(2);
         System.out.println("You land on start. Well done");
         return true;
     }

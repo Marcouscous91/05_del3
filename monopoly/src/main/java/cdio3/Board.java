@@ -40,10 +40,11 @@ class Board {
         return fields[position];
     }
 
-    public boolean movePlayer(Game game){
+    public boolean movePlayer(Player player){
         boolean continueGame;
-        int playerLandOn = game.getCurrentPlayer().getPosition();
-        continueGame = fields[playerLandOn].doAction(game);
+        int playerPosition = player.getPosition();
+        Field landOn = fields[playerPosition];
+        continueGame = landOn.doAction(player);
         return continueGame;
     }
 }

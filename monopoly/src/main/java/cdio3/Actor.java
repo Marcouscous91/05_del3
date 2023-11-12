@@ -84,7 +84,7 @@ class Player extends Actor{
     @Override
     public boolean transferMoney(Actor receiver, double amount){
         boolean canPay;
-        if(this.getBalance() > amount){
+        if(this.getBalance() >= amount){
             receiver.addSum(amount);
             this.subtractSum(amount);
             canPay = true;

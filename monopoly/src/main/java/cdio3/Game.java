@@ -17,8 +17,6 @@ class Game {
         die = new Die(1, 6);
         createPlayers(numberOfPlayers);
         board = new Board(bank);
-        bank.setBalance(90);
-
     }
 
     public void play(){
@@ -26,7 +24,7 @@ class Game {
         for(int i = 0; i < numberOfPlayers; i++){
             System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");
             pressEnter.nextLine();
-            roll(players[i]);
+            boolean continueGame = roll(players[i]);
             if(i == numberOfPlayers - 1){
                 i = -1;
             }
@@ -37,11 +35,13 @@ class Game {
         return currenPlayer;
     }
     
-    public void movePlayer(int sum){
-        currenPlayer.move(sum);
+    public boolean movePlayer(int dieSum){
+        boolean continueGame;
+        currenPlayer.move(dieSum);
         String nameOfField = board.getField(currenPlayer.getPosition()).getName();
         System.out.println("\nYou landed on " + nameOfField);
-        board.movePlayer(this);
+        continueGame = board.movePlayer(currenPlayer);
+        return continueGame;
     }
 
     private void createPlayers(int numberOfPlayers){
@@ -56,10 +56,12 @@ class Game {
         }
     }
 
-    private void roll(Player player){
+    private boolean roll(Player player){
+        boolean continueGame;
         currenPlayer = player;
         die.roll();
-        int sum = die.getFaceValue();
-        movePlayer(sum);
+        int dieSum = die.getFaceValue();
+        continueGame = movePlayer(dieSum);
+        return continueGame;
     }
 }
