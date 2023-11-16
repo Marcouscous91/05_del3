@@ -86,7 +86,13 @@ class Game {
 
     /*
      * Determines the current player, who's turn it is.
-     * Rolls the dice
+     * Rolls the dice, and gets the face value.
+     * Calls on the movePlayer() function, of this object, to initiate player movement on the board.
+     * 
+     * Param:   player: the player who's turn it is.
+     * 
+     * Return: continueGame:    boolean depending, if the doAction() of fields where performed
+     *                          succesfully
      */
     private boolean roll(Player player){
         boolean continueGame;
