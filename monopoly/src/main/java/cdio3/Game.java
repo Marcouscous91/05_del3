@@ -52,7 +52,13 @@ class Game {
             System.out.println("Enter name of Player " + (i + 1));
             String playerName = input.nextLine();
             this.players[i] = new Player(playerName);
-            bank.transferMoney(this.players[i], 15);  
+            if (numberOfPlayers == 2){
+                bank.transferMoney(this.players[i], 20); 
+            } else if (numberOfPlayers == 3){
+                bank.transferMoney(this.players[i], 18); 
+            } else if (numberOfPlayers == 4){
+                bank.transferMoney(this.players[i], 16); 
+            }  
         }
     }
 
