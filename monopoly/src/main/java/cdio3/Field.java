@@ -7,6 +7,9 @@ abstract class Field {
         this.name = name;
     }
 
+    /*
+     * Action to be performed, when a player lands on field
+     */
     abstract public boolean doAction(Player player);
 
     public String getName(){
@@ -33,6 +36,14 @@ class Property extends Field{
         return color;
     }
 
+    /*
+     * Initiates the purchase of the property.
+     * Keeps track if the player has enough money to purchase or not. Sets the owner accordingly
+     * 
+     * Param:   player: the player who is making the purchase.
+     * 
+     * Return:  canPay: boolean depending if player can perform purchase.
+     */
     private boolean buyProperty(Player player){
         boolean canPay;
         canPay = player.transferMoney(owner, cost);
@@ -45,6 +56,14 @@ class Property extends Field{
         return canPay;
     }
 
+    /*
+     * Initiates the payment of rent.
+     * Keeps track if the player has enough money to pay rent or not. Sets the owner accordingly
+     * 
+     * Param:   player: the player who is paying rent.
+     * 
+     * Return:  canPay: boolean depending if player can pay.
+     */
     private boolean payRent(Player player){
         boolean canPay;
         canPay = player.transferMoney(owner, rent);
@@ -54,6 +73,17 @@ class Property extends Field{
         return canPay;
     }
 
+    /*
+     * Action performed when player lands on property
+     * Checks if the player is the owner or not. 3 scenarios:
+     * 1) Property is free -> player buys property from bank
+     * 2) Property owned by other player -> player pays rent to owner
+     * 3) Property owned by player -> nothing happens.
+     * 
+     * Param:   player: the player who is paying rent.
+     * 
+     * Return:  canPay: boolean depending if player can pay according to scenario.
+     */
     @Override
     public boolean doAction(Player player){
         boolean canPay;
