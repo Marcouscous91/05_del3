@@ -83,6 +83,11 @@ class PropertyManager{
     Dictionary<Integer, Property> properties;
     Dictionary<Color, Property[]> pairs;
 
+    /*
+     * Constructor
+     * 
+     * Param:   properties: hashtable of properties on the board. Hashtable create in object 'Board'
+     */
     public PropertyManager(Dictionary<Integer, Property> properties){
         this.properties = properties;
         pairProperties();
