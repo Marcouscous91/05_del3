@@ -19,12 +19,21 @@ class Game {
         board = new Board(bank);
     }
 
+    /* 
+     * (!) Important function (!)
+     * 
+     * Main function:
+     * 
+     * Initiates the game, with the subsequent methods.
+     */
     public void play(){
         Scanner pressEnter = new Scanner(System.in);
+        // Loop to keep game going
         for(int i = 0; i < numberOfPlayers; i++){
             System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");
             pressEnter.nextLine();
             boolean continueGame = roll(players[i]);
+            // Resets the for-loop, according to number of players.
             if(i == numberOfPlayers - 1){
                 i = -1;
             }
@@ -35,6 +44,19 @@ class Game {
         return currenPlayer;
     }
     
+    /*
+     * (!) Important function (!)
+     * 
+     * Updates the board position of the player, corresponding to the die roll, and fetches the 
+     * corresponding field.
+     * Calls on the movePlayer() action of the board, which will initiate the action according,
+     * to the field the player lands on.
+     * 
+     * Param:   dieSum: the face value of the die rolled.
+     * 
+     * Return:  continueGame:   boolean depending og whether the action performed on the field
+     *                          is succesfully completed or not
+     */
     public boolean movePlayer(int dieSum){
         boolean continueGame;
         currenPlayer.move(dieSum);
@@ -44,6 +66,12 @@ class Game {
         return continueGame;
     }
 
+    /*
+     * Creates the players according to number of players, and stores them in array of type Players.
+     * Transfers the start amount of money to each player, from bank, according to number of players.
+     * 
+     * Param:   numberOfPlayers: the desired number of players, playing the game.
+     */
     private void createPlayers(int numberOfPlayers){
         Scanner input = new Scanner(System.in);
         this.players = new Player[numberOfPlayers];
@@ -56,6 +84,16 @@ class Game {
         }
     }
 
+    /*
+     * Determines the current player, who's turn it is.
+     * Rolls the dice, and gets the face value.
+     * Calls on the movePlayer() function, of this object, to initiate player movement on the board.
+     * 
+     * Param:   player: the player who's turn it is.
+     * 
+     * Return: continueGame:    boolean depending, if the doAction() of fields where performed
+     *                          succesfully
+     */
     private boolean roll(Player player){
         boolean continueGame;
         currenPlayer = player;
