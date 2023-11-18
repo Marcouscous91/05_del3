@@ -96,6 +96,10 @@ class Player extends Actor{
         
     }
 
+    public double getTotalScore(){
+        return getBalance();
+    }
+
     /*
      * Transfers money from the players account to the receivers account.
      * Keeps track if the player has enough money to pay amount, and if the player goes in debt.
