@@ -1,7 +1,9 @@
 package cdio3;
 
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 class Board {
     private Field[] fields;
@@ -20,7 +22,7 @@ class Board {
      * Param:   bank: the "actor" who will be the initial owner of property.
      */
     private void createPropertyManager(Actor bank){
-        Dictionary<Integer, Property> properties = new Hashtable<>();
+        Map<Integer, Property> properties = new HashMap<>();
         properties.put(1, new Property("Baker", 2, bank, Color.RED));
         properties.put(3, new Property("Marcus' House", 1, bank, Color.BROWN));
         properties.put(4, new Property("Train Station", 1, bank, Color.PURPLE));
@@ -38,7 +40,7 @@ class Board {
      * 
      * Param:   properties: the hashtable stored under the propertyManager object
      */
-    private void createFields(Dictionary<Integer, Property> properties){
+    private void createFields(Map<Integer, Property> properties){
         fields = new Field[8];
         fields[0] = new Start("Start");
         fields[2] = new Prison("Prison");
@@ -80,20 +82,20 @@ class Board {
 }
 
 class PropertyManager{
-    Dictionary<Integer, Property> properties;
-    Dictionary<Color, Property[]> pairs;
+    Map<Integer, Property> properties = new HashMap<>();
+    Map<Color, Property[]> pairs = new HashMap<>();
 
     /*
      * Constructor
      * 
      * Param:   properties: hashtable of properties on the board. Hashtable create in object 'Board'
      */
-    public PropertyManager(Dictionary<Integer, Property> properties){
+    public PropertyManager(Map<Integer, Property> properties){
         this.properties = properties;
         pairProperties();
     }
 
-    public Dictionary<Integer, Property> getProperties() {
+    public Map<Integer, Property> getProperties() {
         return properties;
     }
 
@@ -101,14 +103,34 @@ class PropertyManager{
      * Pairs the properties by their color 
      * (Used to keep track if they are owned by same player, thus doubling rent) 
      */
-    public void pairProperties(){
-        pairs = new Hashtable<>();
+    public void pairPropertiesBeta(){
         Property[] red = new Property[]{properties.get(1), properties.get(5)};
         Property[] brown = new Property[]{properties.get(3), properties.get(4)};
         Property[] purple = new Property[]{properties.get(4), properties.get(7)};
         pairs.put(Color.RED, red);
         pairs.put(Color.BROWN, brown);
         pairs.put(Color.PURPLE, purple);
+    }
+
+    private void insertPair(Property property){
+        Color color = property.getColor();
+        if(pairs.get(color) != null){
+            Property[] pair = new Property[2];
+            for(Property x: properties.values()){
+                if(property != x && x.getColor() == color){
+                    pair[0] = property;
+                    pair[1] = x;
+                    pairs.put(color, pair);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void pairProperties(){
+        for(Property property: properties.values()){
+            insertPair(property);
+        }
     }
 
     public boolean doubleRent(Property property){
