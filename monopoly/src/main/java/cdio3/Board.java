@@ -21,13 +21,22 @@ class Board {
      */
     private void createPropertyManager(Actor bank){
         Dictionary<Integer, Property> properties = new Hashtable<>();
-        properties.put(1, new Property("Baker", 2, bank, Color.RED));
-        properties.put(3, new Property("Marcus' House", 1, bank, Color.BROWN));
-        properties.put(4, new Property("Train Station", 1, bank, Color.PURPLE));
-        properties.put(5, new Property("School", 2, bank, Color.RED));
-        properties.put(6, new Property("Police Station", 3, bank, Color.BROWN));
-        properties.put(7, new Property("Restaurant", 2, bank, Color.PURPLE));
-       
+        properties.put(1, new Property("Baker", 1, bank, Color.BROWN));
+        properties.put(2, new Property("Marcus' House", 1, bank, Color.BROWN));
+        properties.put(4, new Property("Train Station", 1, bank, Color.LIGHTBLUE));
+        properties.put(5, new Property("School", 1, bank, Color.LIGHTBLUE));
+        properties.put(7, new Property("Police Station", 2, bank, Color.PURPLE));
+        properties.put(8, new Property("Restaurant", 2, bank, Color.PURPLE));
+        properties.put(10, new Property("Field 10", 2, bank, Color.YELLOW));
+        properties.put(11, new Property("Field 11", 2, bank, Color.YELLOW));
+        properties.put(13, new Property("Field 13", 3, bank, Color.RED));
+        properties.put(14, new Property("Field 14", 3, bank, Color.RED));
+        properties.put(16, new Property("Field 16", 3, bank, Color.ORANGE));
+        properties.put(17, new Property("Field 17", 3, bank, Color.ORANGE));
+        properties.put(19, new Property("Field 19", 4, bank, Color.GREEN));
+        properties.put(20, new Property("Field 20", 4, bank, Color.GREEN));
+        properties.put(22, new Property("Field 22", 5, bank, Color.DARKBLUE));
+        properties.put(23, new Property("Field 23", 5, bank, Color.DARKBLUE));
         propertyManager = new PropertyManager(properties);
     }
 
@@ -39,9 +48,9 @@ class Board {
      * Param:   properties: the hashtable stored under the propertyManager object
      */
     private void createFields(Dictionary<Integer, Property> properties){
-        fields = new Field[8];
+        fields = new Field[24];
         fields[0] = new Start("Start");
-        fields[2] = new Prison("Prison");
+        fields[6] = new Prison("Prison");
 
         for(int i = 0; i < fields.length; i++){
             if (fields[i] == null) {
