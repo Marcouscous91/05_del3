@@ -67,6 +67,7 @@ class Board {
      * Simulates movement of player on board.
      * Calls on the doAction() function of the field, which the player lands on.
      * Keeps track whether the doAction() is succesfully performed, or not.
+     * Checks to see if property landed on, and other property of same color, are owned by same player. 
      * 
      * Param:   player: the player of turn it is currently
      * 
@@ -77,6 +78,10 @@ class Board {
         int playerPosition = player.getPosition();
         Field landOn = fields[playerPosition];
         continueGame = landOn.doAction(player);
+        if(landOn instanceof Property){
+            Property property = propertyManager.getProperties().get(playerPosition);
+            propertyManager.isDoubleRent(property);
+        }
         return continueGame;
     }
 }
@@ -112,6 +117,22 @@ class PropertyManager{
         pairs.put(Color.PURPLE, purple);
     }
 
+    /*
+     * Pairs the properties according to color, and stores them in HashMap 'pairs'
+     */
+    public void pairProperties(){
+        for(Property property: properties.values()){
+            insertPair(property);
+        }
+    }
+    
+    /*
+     * Auxiliary function in 'pairProperties()'
+     * Checks a property and searches for the other property with same color, stores them as and
+     * array of properties, and inserts them into HashMap 'pairs'
+     * 
+     * Param:   property: the property to be checked with others.
+     */
     private void insertPair(Property property){
         Color color = property.getColor();
         if(pairs.get(color) == null){
@@ -127,12 +148,12 @@ class PropertyManager{
         }
     }
 
-    public void pairProperties(){
-        for(Property property: properties.values()){
-            insertPair(property);
-        }
-    }
-
+    /*
+     * Checks to see if a given property and it's corresponding property (according to color),
+     * are owned by same player. Doubles the rent of both properties if it is the case.
+     * 
+     * Param:   property: the property to check which is the one the player landed on the current turn.
+     */
     public boolean isDoubleRent(Property property){
         boolean rentDoubled = false;
         if(!(property.getOwner() instanceof Player)){
