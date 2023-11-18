@@ -36,6 +36,10 @@ class Property extends Field{
         return color;
     }
 
+    public double getCost(){
+        return cost;
+    }
+
     /*
      * Initiates the purchase of the property.
      * Keeps track if the player has enough money to purchase or not. Sets the owner accordingly
@@ -48,6 +52,7 @@ class Property extends Field{
         boolean canPay;
         canPay = player.transferMoney(owner, cost);
         if(canPay){
+            player.acquireProperty(this);
             owner = player;
             System.out.println("\nYou bought " + name + " for " + cost + "M");
         } else if(!canPay) {
@@ -87,7 +92,7 @@ class Property extends Field{
     @Override
     public boolean doAction(Player player){
         boolean canPay;
-        if(owner.getName().equals("Bank")){
+        if(owner instanceof Bank){
             canPay = buyProperty(player);
         } else if(owner instanceof Player && owner != player){
             canPay = payRent(player);
