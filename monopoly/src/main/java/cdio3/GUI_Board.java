@@ -2,6 +2,10 @@ package cdio3;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+
 public class GUI_Board {
     GUI_Field[][] board;
 
@@ -28,7 +32,7 @@ public class GUI_Board {
 
     private GUI_Field[] creatRow(){
         GUI_Field[] row = new GUI_Field[] {
-            new GUI_Field(new Prison("Prison")),
+            new GUI_Property(new Property("House", 20, new Player("Tester"), Color.RED)),
             new GUI_Field(new Start("Start")),
             new GUI_Field(new Prison("Prison")),
             new GUI_Field(new Start("Start")),
@@ -47,7 +51,7 @@ public class GUI_Board {
             null,
             null,
             null,
-            new GUI_Field(new Start("Start"))
+            new GUI_Property(new Property("Bank", 0, new Player("Tester"), Color.PURPLE))
         };
         return row;
     }
@@ -109,14 +113,48 @@ class GUI_Property extends GUI_Field{
     String owner;
     double cost;
     Color color;
+    Map<Color, String> colors = new HashMap<>();
+    String ANSI_RESET = "\u001B[0m";
 
     public GUI_Property(Property property){
         super(property);
         this.owner = property.getOwner().getName();
         this.cost = property.getCost();
         this.color = property.getColor();
+        createColorMap();
+        this.horizontalEdge = colors.get(color) + horizontalEdge + ANSI_RESET;
+
     }
 
+    private void createColorMap(){
+        colors.put(Color.RED, "\u001B[31m");
+        colors.put(Color.DARKBLUE, "\u001B[34m");
+        colors.put(Color.PURPLE, "\u001B[35m");
+    }
+
+    public String line(int row){
+        String output;
+
+        switch (row) {
+            case 1:
+                output = horizontalEdge;
+                break;
+            case 2:
+                output = row(name);
+                break;
+            case 7:
+                output = horizontalEdge;
+                break;
+            default:
+                output = row("");
+                break;
+        }
+        return output;
+    }
+
+    protected String row(String text){
+        return colors.get(color) + "|" + ANSI_RESET + StringUtils.center(text, 12) + colors.get(color) + "|" + ANSI_RESET;
+    }
 
 }
 
