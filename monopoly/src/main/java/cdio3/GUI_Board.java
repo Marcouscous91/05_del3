@@ -34,8 +34,7 @@ public class GUI_Board {
             new GUI_Field(new Start("Start")),
             new GUI_Field(new Prison("Prison")),
             new GUI_Field(new Start("Start")),
-            new GUI_Field(new Prison("Prison")),
-            new GUI_Field(new Start("Start"))
+            new GUI_Field(new Prison("Prison"))
         };
         return row;
     }
@@ -43,7 +42,6 @@ public class GUI_Board {
     private GUI_Field[] creatMiddleRow(){
         GUI_Field[] row = new GUI_Field[] {
             new GUI_Field(new Prison("Prison")),
-            null,
             null,
             null,
             null,
