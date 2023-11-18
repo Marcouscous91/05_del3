@@ -33,7 +33,7 @@ class Game {
             System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");
             pressEnter.nextLine();
             boolean continueGame = roll(players[i]);
-            // Checks win condition, if a player loses
+            // Searches for winning player, if a player loses
             if(!continueGame){
                 Player winner = checkWinner();
                 System.out.println(
@@ -115,17 +115,20 @@ class Game {
         Player[] playersInTie = new Player[numberOfPlayers - 1];
         // Searches for the highest balance and notates the player
         for(int i = 0; i < numberOfPlayers; i++){
-            double playerBalance = players[i].getBalance();
-            if(winnerBalance < playerBalance){
-                winner = players[i];
-                winnerBalance = playerBalance;
-            // Checks to see if there is a tie between one or more players.
-            } else if((winnerBalance == playerBalance) && (winnerBalance != 0)){
-                isTie = true;
-                playersInTie[tieCounter] = players[i];
-                tieCounter++;
+            if(!players[i].inDebt()){
+                double playerBalance = players[i].getBalance();
+                if(winnerBalance < playerBalance){
+                    winner = players[i];
+                    winnerBalance = playerBalance;
+                // Checks to see if there is a tie between one or more players.
+                } else if((winnerBalance == playerBalance) && (winnerBalance != 0)){
+                    isTie = true;
+                    playersInTie[tieCounter] = players[i];
+                    tieCounter++;
+                }
             }
         }
+
 
         if(isTie){
             winner = resolveTie(playersInTie);
