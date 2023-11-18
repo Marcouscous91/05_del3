@@ -50,8 +50,7 @@ class Board {
     private void createFields(Dictionary<Integer, Property> properties){
         fields = new Field[24];
         fields[0] = new Start("Start");
-        fields[6] = new Prison("Visit Prison");
-        fields[18] = new Prison("Go to Prison");
+        fields[6] = new Prison("Prison");
 
         for(int i = 0; i < fields.length; i++){
             if (fields[i] == null) {

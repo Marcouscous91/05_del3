@@ -103,11 +103,8 @@ class Prison extends Field{
 
     private boolean isVisit;
 
-    public Prison(boolean isVisit){
-        super();
-
-        this.isVisit = isVisit;
-        String prisonType = isVisit ? "Visit Prison" : "Go to Prison";
+    public Prison(String name){
+        super(name);
     }
 
 
