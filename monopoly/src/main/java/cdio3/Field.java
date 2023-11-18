@@ -18,13 +18,13 @@ abstract class Field {
 }
 
 class Property extends Field{
-    private int cost;
-    private int rent;
+    private double cost;
+    private double rent;
     private Actor owner;
     private Color color;
 
 
-    public Property(String name, int cost, Actor bank, Color color){
+    public Property(String name, double cost, Actor bank, Color color){
         super(name);
         this.cost = cost;
         this.rent = cost;
@@ -38,6 +38,10 @@ class Property extends Field{
 
     public Actor getOwner(){
         return owner;
+    }
+
+    public double getRent(){
+        return rent;
     }
 
     public void doubleRent(){

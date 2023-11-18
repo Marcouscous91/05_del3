@@ -133,7 +133,7 @@ class PropertyManager{
         }
     }
 
-    public boolean doubleRent(Property property){
+    public boolean isDoubleRent(Property property){
         boolean rentDoubled = false;
         if(!(property.getOwner() instanceof Player)){
             return rentDoubled;      
@@ -142,8 +142,8 @@ class PropertyManager{
         Actor owner1 = pairs.get(color)[0].getOwner();
         Actor owner2 = pairs.get(color)[1].getOwner();
         if (owner1 == owner2) {
-            property.doubleRent();
-            rentDoubled = true;
+            pairs.get(color)[0].doubleRent();
+            pairs.get(color)[1].doubleRent();
         }
         return rentDoubled;
     }
