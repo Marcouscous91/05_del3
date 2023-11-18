@@ -110,15 +110,10 @@ class Prison extends Field{
 
     @Override
     public boolean doAction(Player player){
-        if(!this.isVisit){
             player.ToPrison();
             player.subtractSum(2);
             System.out.println("You done gone to prison, don't drop the soap");
             return true;
-        }else{
-            System.out.println("Be glad you're not behind bars");
-            return false;
-        }
     }
     
 }
