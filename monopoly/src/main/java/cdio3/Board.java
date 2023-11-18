@@ -110,4 +110,19 @@ class PropertyManager{
         pairs.put(Color.BROWN, brown);
         pairs.put(Color.PURPLE, purple);
     }
+
+    public boolean doubleRent(Property property){
+        boolean rentDoubled = false;
+        if(!(property.getOwner() instanceof Player)){
+            return rentDoubled;      
+        }
+        Color color = property.getColor();
+        Actor owner1 = pairs.get(color)[0].getOwner();
+        Actor owner2 = pairs.get(color)[1].getOwner();
+        if (owner1 == owner2) {
+            property.doubleRent();
+            rentDoubled = true;
+        }
+        return rentDoubled;
+    }
 }

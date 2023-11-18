@@ -36,6 +36,14 @@ class Property extends Field{
         return color;
     }
 
+    public Actor getOwner(){
+        return owner;
+    }
+
+    public void doubleRent(){
+        this.rent = cost * 2;
+    }
+
     /*
      * Initiates the purchase of the property.
      * Keeps track if the player has enough money to purchase or not. Sets the owner accordingly
@@ -68,7 +76,7 @@ class Property extends Field{
         boolean canPay;
         canPay = player.transferMoney(owner, rent);
         if(canPay){
-            System.out.println("\nYou payed " + cost + " M to " + owner.getName() + " in rent");
+            System.out.println("\nYou payed " + rent + " M to " + owner.getName() + " in rent");
         }
         return canPay;
     }
@@ -87,7 +95,7 @@ class Property extends Field{
     @Override
     public boolean doAction(Player player){
         boolean canPay;
-        if(owner.getName().equals("Bank")){
+        if(!(owner instanceof Player)){
             canPay = buyProperty(player);
         } else if(owner instanceof Player && owner != player){
             canPay = payRent(player);
