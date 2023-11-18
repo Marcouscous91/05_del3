@@ -114,7 +114,7 @@ class PropertyManager{
 
     private void insertPair(Property property){
         Color color = property.getColor();
-        if(pairs.get(color) != null){
+        if(pairs.get(color) == null){
             Property[] pair = new Property[2];
             for(Property x: properties.values()){
                 if(property != x && x.getColor() == color){
