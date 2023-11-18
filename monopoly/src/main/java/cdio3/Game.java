@@ -33,6 +33,16 @@ class Game {
             System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");
             pressEnter.nextLine();
             boolean continueGame = roll(players[i]);
+            // Checks win condition, if a player loses
+            if(!continueGame){
+                Player winner = checkWinner();
+                System.out.println(
+                    "Congratulations! \n" + 
+                    winner.getName() + " wins the game, with a total amount of " 
+                    + winner.getBalance() + "M, and wins the title of 'Biggest Capitalist Pig'!"
+                    );
+                System.out.println("\nThank you for playing!");
+            }
             // Resets the for-loop, according to number of players.
             if(i == numberOfPlayers - 1){
                 i = -1;
@@ -89,6 +99,29 @@ class Game {
             }  
         }
     }
+
+    private Player checkWinner(){
+        boolean isTie = false;
+        double winnerBalance = 0;
+        Player winner = null;
+        int tieCounter = 0;
+        // Searches for the highest balance and notates the player
+        for(int i = 0; i < numberOfPlayers; i++){
+            double playerBalance = players[i].getBalance();
+            if(winnerBalance < playerBalance){
+                winner = players[i];
+                winnerBalance = playerBalance;
+            // Checks to see if there is a tie between one or more players.
+            } else if(winnerBalance == playerBalance){
+                isTie = true;
+                tieCounter++;
+                winner = new Player("It's a tie"); //placeholder
+            }
+        }
+        return winner;
+    }
+
+
 
     /*
      * Determines the current player, who's turn it is.
