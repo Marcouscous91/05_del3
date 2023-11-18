@@ -36,6 +36,18 @@ class Property extends Field{
         return color;
     }
 
+    public double getCost(){
+        return cost;
+    }
+
+    public Actor getOwner(){
+        return owner;
+    }
+
+    public double getRent(){
+        return rent;
+    }
+
     /*
      * Initiates the purchase of the property.
      * Keeps track if the player has enough money to purchase or not. Sets the owner accordingly
