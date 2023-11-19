@@ -16,7 +16,7 @@ public class GUI_Board {
         players = game.getPlayers();
         createFields(game.getBoard());
         createBoard();
-        positionTracker = new PositionTracker(fields, players);
+        //positionTracker = new PositionTracker(fields, players);
 
     }
 
@@ -51,6 +51,8 @@ public class GUI_Board {
 
     public String boardToString(){
         String output = "";
+        resetPosition();
+        updatePosition();
         for(GUI_Box[] row: GUI_board){
             for(int i = 1; i < 8; i++){
                 for(GUI_Box box: row){
@@ -64,6 +66,18 @@ public class GUI_Board {
             }
         }
         return output;
+    }
+
+    public void resetPosition(){
+        for(GUI_Box field: fields){
+            field.resetplayerTokens();
+        }
+    }
+
+    public void updatePosition(){
+        for(Player player: players){
+            fields[player.getPosition()].addToplayerTokens(player.getToken());
+        }
     }
 
     private void createBoard(){
@@ -182,11 +196,51 @@ class PositionTracker{
         this.fields = fields;
         this.players = players;
     }
+
+    public void resetPosition(){
+        for(GUI_Box field: fields){
+            field.resetplayerTokens();
+        }
+    }
+
+    public void updatePosition(){
+        for(Player player: players){
+            fields[player.getPosition()].addToplayerTokens(player.getToken());
+        }
+    }
+
+
 }
 
 abstract class GUI_Box{
+    protected String[] playerTokens;
     protected String horizontalEdge;
     abstract public String line(int row);
+
+    public void resetplayerTokens(){
+        playerTokens = new String[4];
+    }
+
+    public void addToplayerTokens(String playerSymbol){
+        for(int i = 0; i < playerTokens.length; i++){
+            if(playerTokens[i] == null){
+                playerTokens[i] = playerSymbol;
+                break;
+            }
+        }
+    }
+
+    public String playerTokensToString(){
+        String playerTokensToString = "";
+        for(String str: playerTokens){
+            if(str != null){
+                playerTokensToString += " " + str;
+            } else if(str == null){
+                break;
+            }
+        }
+        return playerTokensToString;
+    }
 }
 
 class GUI_Field extends GUI_Box{
@@ -196,6 +250,7 @@ class GUI_Field extends GUI_Box{
 
     public GUI_Field(Field field){
         this.name = field.getName();
+        this.playerTokens = new String[4];
     }
 
     public GUI_Field(){
@@ -210,6 +265,9 @@ class GUI_Field extends GUI_Box{
                 break;
             case 2:
                 output = row(name);
+                break;
+            case 3:
+                output = row(playerTokensToString());
                 break;
             case 7:
                 output = horizontalEdge;
@@ -244,10 +302,13 @@ class GUI_PlayerInfo extends GUI_Box{
             case 2:
                 output = row(player.getName());
                 break;
-            case 4:
-                output = row("Balance:");
+            case 3:
+                output = row(player.getToken());
                 break;
             case 5:
+                output = row("Balance:");
+                break;
+            case 6:
                 output = row(player.getBalance() + "M");
                 break;
             default:
@@ -305,6 +366,12 @@ class GUI_Property extends GUI_Field{
                 break;
             case 2:
                 output = row(name);
+                break;
+            case 3:
+                output = row(playerTokensToString());
+                break;
+            case 5:
+                output = row("Owner: " + property.getOwner().getToken());
                 break;
             case 6:
                 output = row(cost + "M");

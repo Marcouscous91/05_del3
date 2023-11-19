@@ -3,6 +3,7 @@ package cdio3;
 abstract class Actor {
     protected String name;
     protected Account account;
+    protected String token;
 
     public Actor(){
         this.account = new Account();
@@ -10,6 +11,14 @@ abstract class Actor {
 
     public String getName(){
         return name;
+    }
+    
+    public void setToken(String token){
+        this.token = token;
+    }
+
+    public String getToken(){
+        return token;
     }
 
     public void setBalance(double money){
@@ -62,6 +71,8 @@ class Player extends Actor{
             position -= 23;
         }
     }
+
+    
 
     public void ToPrison(){
         inPrison = true;
@@ -128,6 +139,7 @@ class Bank extends Actor{
         super();
         this.setBalance(90);
         this.name = "Bank";
+        this.token = "Bank";
     }
 
     @Override
