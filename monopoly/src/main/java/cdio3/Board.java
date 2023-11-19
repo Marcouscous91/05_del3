@@ -37,11 +37,10 @@ class Board {
         properties.put(20, new Property("Field 20", 4, bank, Color.GREEN));
         properties.put(22, new Property("Field 22", 5, bank, Color.DARKBLUE));
         properties.put(23, new Property("Field 23", 5, bank, Color.DARKBLUE));
-        properties.put(3, new Property("Chance field 1", 1, bank, Color.BROWN));
-        properties.put(9, new Property("Chance field 2", 1, bank, Color.BROWN));
-        properties.put(12, new Property("Chance field 3", 1, bank, Color.BROWN));
-        properties.put(15, new Property("Chance field 4", 1, bank, Color.BROWN));
-        properties.put(21, new Property("Chance field 5", 1, bank, Color.BROWN));
+        properties.put(3, new Property("Chance field 1", 0, bank, Color.BROWN));
+        properties.put(9, new Property("Chance field 2", 0, bank, Color.BROWN));
+        properties.put(15, new Property("Chance field 3", 0, bank, Color.BROWN));
+        properties.put(21, new Property("Chance field 4", 0, bank, Color.BROWN));
         propertyManager = new PropertyManager(properties);
     }
 
@@ -56,6 +55,7 @@ class Board {
         fields = new Field[24];
         fields[0] = new Start("Start");
         fields[6] = new Prison("Prison");
+        fields[12] = new FreeParking("Free Parking");
         fields[18] = new Prison("Go to Prison");
 
         for(int i = 0; i < fields.length; i++){

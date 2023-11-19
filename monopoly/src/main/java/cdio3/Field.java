@@ -143,6 +143,18 @@ class Start extends Field{
     }
 }
 
+class FreeParking extends Field{
+    public FreeParking(String name){
+        super(name);
+    }
+
+    @Override
+    public boolean doAction(Player player){
+        System.out.println("Free parking, GREAT!");
+        return true;
+    }
+}
+
 enum Color{
     BROWN,
     LIGHTBLUE,
