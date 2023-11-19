@@ -40,8 +40,16 @@ class Game {
         }
     }
 
+    public Board getBoard(){
+        return board;
+    }
+
     public Player getCurrentPlayer(){
         return currenPlayer;
+    }
+
+    public Player getPlayer(int playerNumber){
+        return players[playerNumber - 1];
     }
     
     /*

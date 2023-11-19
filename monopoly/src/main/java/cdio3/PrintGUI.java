@@ -6,7 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 
 public class PrintGUI {
     public static void main(String[] args){
-        GUI_Board tester = new GUI_Board();
+        Game board = new Game(4);
+        GUI_Board tester = new GUI_Board(board);
         System.out.println(tester.boardToString());
+
     }
 }
