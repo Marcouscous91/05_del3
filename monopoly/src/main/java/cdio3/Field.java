@@ -155,6 +155,18 @@ class FreeParking extends Field{
     }
 }
 
+class ChanceField extends Field{
+    public ChanceField(String name){
+        super(name);
+    }
+
+    @Override
+    public boolean doAction(Player player){
+        System.out.println("nothing here yet! more to come later");
+        return true;
+    }
+}
+
 enum Color{
     BROWN,
     LIGHTBLUE,
