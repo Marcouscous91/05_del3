@@ -380,7 +380,7 @@ class GUI_Property extends GUI_Field{
                 output = horizontalEdge;
                 break;
             default:
-                output = row("");
+                output = row(""); 
                 break;
         }
         return output;
