@@ -9,6 +9,7 @@ class Game {
     private Player currenPlayer;
     private Bank bank;
     private int numberOfPlayers;
+    private GUI_Board boardDisplay;
 
     public Game(int numberOfPlayers){
         this.numberOfPlayers = numberOfPlayers;
@@ -17,6 +18,7 @@ class Game {
         die = new Die(1, 6);
         createPlayers(numberOfPlayers);
         board = new Board(bank);
+        boardDisplay = new GUI_Board(this);
     }
 
     /* 
@@ -33,6 +35,7 @@ class Game {
             System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");
             pressEnter.nextLine();
             boolean continueGame = roll(players[i]);
+            System.out.println(boardDisplay.boardToString());
             // Resets the for-loop, according to number of players.
             if(i == numberOfPlayers - 1){
                 i = -1;
@@ -42,6 +45,10 @@ class Game {
 
     public Board getBoard(){
         return board;
+    }
+
+    public Player[] getPlayers(){
+        return players;
     }
 
     public Player getCurrentPlayer(){

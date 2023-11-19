@@ -8,9 +8,45 @@ import java.util.Map;
 
 public class GUI_Board {
     GUI_Box[][] GUI_board;
+    PositionTracker positionTracker;
+    GUI_Box[] fields;
+    Player[] players;
 
     public GUI_Board(Game game){
-        createBoard(game);
+        players = game.getPlayers();
+        createFields(game.getBoard());
+        createBoard();
+        positionTracker = new PositionTracker(fields, players);
+
+    }
+
+    public void createFields(Board board){
+        fields = new GUI_Box[]{
+            new GUI_Field(board.getField(0)),
+            new GUI_Property(board.getProperty(1)),
+            new GUI_Property(board.getProperty(2)),
+            new GUI_Field(board.getField(3)),
+            new GUI_Property(board.getProperty(4)),
+            new GUI_Property(board.getProperty(5)),
+            new GUI_Field(board.getField(6)),
+            new GUI_Property(board.getProperty(7)),
+            new GUI_Property(board.getProperty(8)),
+            new GUI_Field(board.getField(9)),
+            new GUI_Property(board.getProperty(10)),
+            new GUI_Property(board.getProperty(11)),
+            new GUI_Field(board.getField(12)),
+            new GUI_Property(board.getProperty(13)),
+            new GUI_Property(board.getProperty(14)),
+            new GUI_Field(board.getField(15)),
+            new GUI_Property(board.getProperty(16)),
+            new GUI_Property(board.getProperty(17)),
+            new GUI_Field(board.getField(18)),
+            new GUI_Property(board.getProperty(19)),
+            new GUI_Property(board.getProperty(20)),
+            new GUI_Field(board.getField(21)),
+            new GUI_Property(board.getProperty(22)),
+            new GUI_Property(board.getProperty(23))
+        };
     }
 
     public String boardToString(){
@@ -30,170 +66,121 @@ public class GUI_Board {
         return output;
     }
 
-    private GUI_Box[] topRow(Board board){
+    private void createBoard(){
+        GUI_board = new GUI_Box[][]{
+            topRow(),
+            secondRow(),
+            thirdRow(),
+            fourthRow(),
+            fifthRow(),
+            sixthRow(),
+            bottomRow()
+        };
+    }
+
+    private GUI_Box[] topRow(){
 
         GUI_Box[] row = new GUI_Box[] {
-            new GUI_Field(board.getField(0)),
-            new GUI_Property(board.getProperty(1)),
-            new GUI_Property(board.getProperty(2)),
-            new GUI_Field(board.getField(3)),
-            new GUI_Property(board.getProperty(4)),
-            new GUI_Property(board.getProperty(5)),
-            new GUI_Field(board.getField(6))
+            fields[0],
+            fields[1],
+            fields[2],
+            fields[3],
+            fields[4],
+            fields[5],
+            fields[6],
         };
         return row;
     }
     
-    private GUI_Box[] secondRow(Board board, Player p1, Player p2){
+    private GUI_Box[] secondRow(){
         GUI_Box[] row = new GUI_Box[] {
-            new GUI_Property(board.getProperty(23)),
-            new GUI_PlayerInfo(p1),
+            fields[23],
+            new GUI_PlayerInfo(players[0]),
             null,
             null,
             null,
-            new GUI_PlayerInfo(p2),
-            new GUI_Property(board.getProperty(7))
+            new GUI_PlayerInfo(players[1]),
+            fields[7]
         };
         return row;
     }
 
-    private GUI_Box[] thirdRow(Board board){
+    private GUI_Box[] thirdRow(){
         GUI_Box[] row = new GUI_Box[] {
-            new GUI_Property(board.getProperty(22)),
+            fields[22],
             null,
             null,
             null,
             null,
             null,
-            new GUI_Property(board.getProperty(8))
+            fields[8],
         };
         return row;
     }
 
-    private GUI_Box[] fourthRow(Board board){
+    private GUI_Box[] fourthRow(){
         GUI_Box[] row = new GUI_Box[] {
-            new GUI_Field(board.getField(21)),
+            fields[21],
             null,
             null,
             null,
             null,
             null,
-            new GUI_Field(board.getField(9))
+            fields[9]
         };
         return row;
     }
 
-    private GUI_Box[] fifthRow(Board board){
+    private GUI_Box[] fifthRow(){
         GUI_Box[] row = new GUI_Box[] {
-            new GUI_Property(board.getProperty(20)),
+            fields[20],
             null,
             null,
             null,
             null,
             null,
-            new GUI_Property(board.getProperty(10))
+            fields[10]
         };
         return row;
     }
 
-    private GUI_Box[] sixthRow(Board board, Player p3, Player p4){
+    private GUI_Box[] sixthRow(){
         GUI_Box[] row = new GUI_Box[] {
-            new GUI_Property(board.getProperty(19)),
-            new GUI_PlayerInfo(p3),
+            fields[19],
+            new GUI_PlayerInfo(players[2]),
             null,
             null,
             null,
-            new GUI_PlayerInfo(p4),
-            new GUI_Property(board.getProperty(11))
+            new GUI_PlayerInfo(players[3]),
+            fields[11]
         };
         return row;
     }
 
-    private GUI_Box[] bottomRow(Board board){
+    private GUI_Box[] bottomRow(){
         GUI_Box[] row = new GUI_Box[] {
-            new GUI_Field(board.getField(12)),
-            new GUI_Property(board.getProperty(13)),
-            new GUI_Property(board.getProperty(14)),
-            new GUI_Field(board.getField(15)),
-            new GUI_Property(board.getProperty(16)),
-            new GUI_Property(board.getProperty(17)),
-            new GUI_Field(board.getField(18))
+            fields[18],
+            fields[17],
+            fields[16],
+            fields[15],
+            fields[14],
+            fields[13],
+            fields[12]
         };
         return row;
     }
 
 
 
-    private GUI_Box[] creatRow(){
-        GUI_Box[] row = new GUI_Box[] {
-            new GUI_Property(new Property("House", 20, new Player("Tester"), Color.RED)),
-            new GUI_Field(new Start("Start")),
-            new GUI_Field(new Prison("Prison")),
-            new GUI_Field(new Start("Start")),
-            new GUI_Field(new Prison("Prison")),
-            new GUI_Field(new Start("Start")),
-            new GUI_Field(new Prison("Prison"))
-        };
-        return row;
-    }
+}
 
-    private GUI_Box[] creatMiddleRow(){
-        GUI_Box[] row = new GUI_Box[] {
-            new GUI_Field(new Prison("Prison")),
-            null,
-            null,
-            null,
-            null,
-            null,
-            new GUI_Property(new Property("Bank", 0, new Player("Tester"), Color.PURPLE))
-        };
-        return row;
-    }
+class PositionTracker{
+    GUI_Box[] fields;
+    Player[] players;
 
-    private GUI_Box[] createTopRow(){
-        Player player1 = new Player("Soeren");
-        player1.setBalance(10);
-        Player player2 = new Player("Bjoern");
-        player2.setBalance(13);
-        GUI_Box[] row = new GUI_Box[] {
-            new GUI_Field(new Prison("Prison")),
-            new GUI_PlayerInfo(player2),
-            null,
-            null,
-            null,
-            new GUI_PlayerInfo(player2),
-            new GUI_Property(new Property("Candy store", 3, new Player("Tester"), Color.PURPLE))
-        };
-        return row;
-    }
-
-    private GUI_Box[] createBottomRow(){
-        Player player3 = new Player("Hjalte");
-        player3.setBalance(3);
-        Player player4 = new Player("Gustav");
-        player4.setBalance(7);
-        GUI_Box[] row = new GUI_Box[] {
-            new GUI_Field(new Prison("Prison")),
-            new GUI_PlayerInfo(player3),
-            null,
-            null,
-            null,
-            new GUI_PlayerInfo(player4),
-            new GUI_Property(new Property("Bank", 10, new Player("Tester"), Color.PURPLE))
-        };
-        return row;
-    }
-
-    private void createBoard(Game game){
-        GUI_board = new GUI_Box[][]{
-            topRow(game.getBoard()),
-            secondRow(game.getBoard(), game.getPlayer(1), game.getPlayer(2)),
-            thirdRow(game.getBoard()),
-            fourthRow(game.getBoard()),
-            fifthRow(game.getBoard()),
-            sixthRow(game.getBoard(), game.getPlayer(3), game.getPlayer(4)),
-            bottomRow(game.getBoard()),
-        };
+    public PositionTracker(GUI_Box[] fields, Player[] players){
+        this.fields = fields;
+        this.players = players;
     }
 }
 
@@ -240,12 +227,14 @@ class GUI_Field extends GUI_Box{
 }
 
 class GUI_PlayerInfo extends GUI_Box{
-    String playerName;
-    double balance;
+    Player player;
+    //String playerName;
+    //double balance;
 
     public GUI_PlayerInfo(Player player){
-        playerName = player.getName();
-        balance = player.getBalance();
+        //playerName = player.getName();
+        //balance = player.getBalance();
+        this.player = player;
     }
 
     @Override
@@ -253,13 +242,13 @@ class GUI_PlayerInfo extends GUI_Box{
         String output;
         switch (row) {
             case 2:
-                output = row(playerName);
+                output = row(player.getName());
                 break;
             case 4:
                 output = row("Balance:");
                 break;
             case 5:
-                output = row(balance + "M");
+                output = row(player.getBalance() + "M");
                 break;
             default:
                 output = row("");
