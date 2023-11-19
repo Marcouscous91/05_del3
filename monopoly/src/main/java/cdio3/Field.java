@@ -101,19 +101,31 @@ class Property extends Field{
 
 class Prison extends Field{
 
-    private boolean isVisit;
+    private boolean isVisit(String name){
+        if(name == "Go to Prison"){
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public Prison(String name){
         super(name);
     }
 
-
     @Override
     public boolean doAction(Player player){
+        if(!(isVisit(name))){
             player.ToPrison();
+            player.move(12);
             player.subtractSum(2);
             System.out.println("You done gone to prison, don't drop the soap");
             return true;
+        } else {
+            System.out.println("You're visiting prison, you might not wanna be here for long");
+            return true;
+        }
+        
     }
     
 }
