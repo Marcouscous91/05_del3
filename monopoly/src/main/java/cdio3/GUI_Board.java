@@ -11,6 +11,7 @@ public class GUI_Board {
     PositionTracker positionTracker;
     GUI_Box[] fields;
     Player[] players;
+    TextFieldManager textFieldManager = new TextFieldManager();
 
     public GUI_Board(Game game){
         players = game.getPlayers();
@@ -49,8 +50,9 @@ public class GUI_Board {
         };
     }
 
-    public String boardToString(){
+    public String boardToString(String input){
         String output = "";
+        textFieldManager.updateTextFields(input);
         resetPosition();
         updatePosition();
         for(GUI_Box[] row: GUI_board){
@@ -136,9 +138,9 @@ public class GUI_Board {
         GUI_Box[] row = new GUI_Box[] {
             fields[21],
             null,
-            null,
-            null,
-            null,
+            textFieldManager.getTextFields()[0],
+            textFieldManager.getTextFields()[1],
+            textFieldManager.getTextFields()[2],
             null,
             fields[9]
         };
@@ -323,7 +325,91 @@ class GUI_PlayerInfo extends GUI_Box{
     }
 }
 
-class EmptyBox{
+class TextFieldManager{
+    private String[] splitInput;
+    private String[][] inputBoxes = new String[3][10];
+    private GUI_TextField[] textFields;
+
+    public TextFieldManager(){
+        textFields = new GUI_TextField[]{
+            new GUI_TextField(),
+            new GUI_TextField(),
+            new GUI_TextField()
+        };
+    }
+
+    public GUI_TextField[] getTextFields(){
+        return textFields;
+    }
+
+    public void updateTextFields(String input){
+        splitInput(input);
+        distributeSplitInput();
+        deliverInput();
+    }
+
+    private void deliverInput(){
+        for(int i = 0; i < textFields.length; i++){
+            textFields[i].setInputText(inputBoxes[i]);
+        }
+    }
+
+    private void splitInput(String input){
+        int inputLength = input.length();
+        int totalSplits = (inputLength / 15) + 1;
+        splitInput = new String[totalSplits];
+        int indexCounter = 0;
+        for(int i = 0; i < inputLength; i += 15){
+            if((i+15) > inputLength){
+                splitInput[indexCounter] = input.substring(i, inputLength -1);
+                break;
+            }
+            splitInput[indexCounter] = input.substring(i, i + 15);
+            indexCounter++;
+        }
+    }
+
+    private void distributeSplitInput(){
+        int counter = 0;
+        for(String str: splitInput){
+            if(counter > 2){
+                counter = 0;
+            }
+            boxInput(str, counter);
+            counter++;
+        }
+    }
+
+    private void boxInput(String str, int box){
+        for(int i = 0; i < inputBoxes[box].length; i++){
+            if(inputBoxes[box][i] == null){
+                inputBoxes[box][i] = str;
+                break;
+            }
+        }
+    }
+}
+
+class GUI_TextField extends GUI_Box{
+    String[] inputText;
+
+    public void setInputText(String[] inputText){
+        this.inputText = inputText;
+    }
+
+    @Override
+    public String line(int row) {
+        if(inputText[row - 1] == null){
+            return row("");
+        }
+        String output = row(inputText[row - 1]);
+        return output;
+    }
+
+    protected String row(String text){
+        return StringUtils.center(text, 15);
+    }
+    
 
 }
 
