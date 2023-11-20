@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
-class Board {
+public class Board {
     private Field[] fields;
     private PropertyManager propertyManager;
 

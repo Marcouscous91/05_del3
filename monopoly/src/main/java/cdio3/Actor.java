@@ -1,6 +1,6 @@
 package cdio3;
 
-abstract class Actor {
+public abstract class Actor {
     protected String name;
     protected Account account;
 

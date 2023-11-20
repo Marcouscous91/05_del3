@@ -1,6 +1,6 @@
 package cdio3;
 
-abstract class Field {
+public abstract class Field {
     protected String name;
 
     public Field(String name){
@@ -47,6 +47,7 @@ class Property extends Field{
 
     public void doubleRent(){
         this.rent = cost * 2;
+    }
 
     public double getCost(){
         return cost;
