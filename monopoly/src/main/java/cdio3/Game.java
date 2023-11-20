@@ -42,6 +42,7 @@ class Game {
                     + winner.getBalance() + "M, and wins the title of 'Biggest Capitalist Pig'!"
                     );
                 System.out.println("\nThank you for playing!");
+                break;
             }
             // Resets the for-loop, according to number of players.
             if(i == numberOfPlayers - 1){
