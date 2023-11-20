@@ -53,10 +53,10 @@ class Board {
         fields[6] = new IntertField("Prison");
         fields[12] = new IntertField("Free Parking");
         fields[18] = new Prison("Go to Prison");
-        fields[3] = new ChanceField("Chance field 1");
-        fields[9] = new ChanceField("Chance field 2");
-        fields[15] = new ChanceField("Chance field 3");
-        fields[21] = new ChanceField("Chance field 4");
+        fields[3] = new IntertField("Chance field 1");
+        fields[9] = new IntertField("Chance field 2");
+        fields[15] = new IntertField("Chance field 3");
+        fields[21] = new IntertField("Chance field 4");
 
         for(int i = 0; i < fields.length; i++){
             if (fields[i] == null) {
