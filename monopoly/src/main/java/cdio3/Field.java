@@ -18,13 +18,13 @@ abstract class Field {
 }
 
 class Property extends Field{
-    private int cost;
-    private int rent;
+    private double cost;
+    private double rent;
     private Actor owner;
     private Color color;
 
 
-    public Property(String name, int cost, Actor bank, Color color){
+    public Property(String name, double cost, Actor bank, Color color){
         super(name);
         this.cost = cost;
         this.rent = cost;
@@ -36,8 +36,21 @@ class Property extends Field{
         return color;
     }
 
+
+    public Actor getOwner(){
+        return owner;
+    }
+
+    public double getRent(){
+        return rent;
+    }
+
+    public void doubleRent(){
+        this.rent = cost * 2;
+
     public double getCost(){
         return cost;
+
     }
 
     /*
@@ -73,7 +86,7 @@ class Property extends Field{
         boolean canPay;
         canPay = player.transferMoney(owner, rent);
         if(canPay){
-            System.out.println("\nYou payed " + cost + " M to " + owner.getName() + " in rent");
+            System.out.println("\nYou payed " + rent + " M to " + owner.getName() + " in rent");
         }
         return canPay;
     }
@@ -92,7 +105,7 @@ class Property extends Field{
     @Override
     public boolean doAction(Player player){
         boolean canPay;
-        if(owner instanceof Bank){
+        if(!(owner instanceof Player)){
             canPay = buyProperty(player);
         } else if(owner instanceof Player && owner != player){
             canPay = payRent(player);
