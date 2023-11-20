@@ -117,17 +117,15 @@ class Prison extends Field{
     public boolean doAction(Player player){
         if(!(isVisit(name))){
             player.ToPrison();
-            player.move(12);
+            player.setPosition(6);
             player.subtractSum(2);
-            System.out.println("You done gone to prison, don't drop the soap");
+            System.out.println("You done gone to prison");
             return true;
         } else {
-            System.out.println("You're visiting prison, you might not wanna be here for long");
+            System.out.println("You're visiting prison");
             return true;
         }
-        
     }
-    
 }
 
 class Start extends Field{
@@ -143,14 +141,13 @@ class Start extends Field{
     }
 }
 
-class FreeParking extends Field{
-    public FreeParking(String name){
+class IntertField extends Field{
+    public IntertField(String name){
         super(name);
     }
 
     @Override
     public boolean doAction(Player player){
-        System.out.println("Free parking, GREAT!");
         return true;
     }
 }

@@ -79,6 +79,10 @@ class Player extends Actor{
         return inDebt;
     }
 
+    public void setPosition(int newPosition){
+        position = newPosition;
+    }
+
     /*
      * Subtracts money from the player account.
      * If account falls below 0, the player is in debt, and debt is tracked, while balance is set to 0.
