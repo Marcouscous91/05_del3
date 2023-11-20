@@ -166,10 +166,17 @@ class Bank extends Actor{
         this.name = "Bank";
     }
 
+    
+
     @Override
     public boolean transferMoney(Actor receiver, double amount) {
-        this.subtractSum(amount);
-        receiver.addSum(amount);
+        if(getBalance() >= amount){
+            this.subtractSum(amount);
+            receiver.addSum(amount);
+        } else {
+            receiver.addSum(this.getBalance());
+            this.setBalance(0);
+        }
         return true;
     }
 }
