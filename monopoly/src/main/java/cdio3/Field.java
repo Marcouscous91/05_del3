@@ -36,6 +36,10 @@ class Property extends Field{
         return color;
     }
 
+    public double getCost(){
+        return cost;
+    }
+
 
     public Actor getOwner(){
         return owner;
@@ -45,6 +49,7 @@ class Property extends Field{
         return rent;
     }
 
+
     public void doubleRent(){
         this.rent = cost * 2;
     }
@@ -53,6 +58,7 @@ class Property extends Field{
         return cost;
 
     }
+
 
     /*
      * Initiates the purchase of the property.

@@ -9,6 +9,7 @@ class Game {
     private Player currenPlayer;
     private Bank bank;
     private int numberOfPlayers;
+    private GUI_Board boardDisplay;
 
     public Game(int numberOfPlayers){
         this.numberOfPlayers = numberOfPlayers;
@@ -17,6 +18,7 @@ class Game {
         die = new Die(1, 6);
         createPlayers(numberOfPlayers);
         board = new Board(bank);
+        boardDisplay = new GUI_Board(this);
     }
 
     /* 
@@ -44,6 +46,7 @@ class Game {
                 System.out.println("\nThank you for playing!");
                 break;
             }
+            //System.out.println(boardDisplay.boardToString("Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin. The first two words themselves are a truncation of dolorem ipsum ('pain itself')."));
             // Resets the for-loop, according to number of players.
             if(i == numberOfPlayers - 1){
                 i = -1;
@@ -51,8 +54,20 @@ class Game {
         }
     }
 
+    public Board getBoard(){
+        return board;
+    }
+
+    public Player[] getPlayers(){
+        return players;
+    }
+
     public Player getCurrentPlayer(){
         return currenPlayer;
+    }
+
+    public Player getPlayer(int playerNumber){
+        return players[playerNumber - 1];
     }
     
     /*
@@ -97,7 +112,24 @@ class Game {
                 bank.transferMoney(this.players[i], 18); 
             } else if (numberOfPlayers == 4){
                 bank.transferMoney(this.players[i], 16); 
-            }  
+            }
+            
+            switch (i) {
+                case 0:
+                    players[i].setToken("#");
+                    break;
+                case 1:
+                    players[i].setToken("@");
+                    break;
+                case 2:
+                    players[i].setToken("$");
+                    break;
+                case 3:
+                    players[i].setToken("%");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
