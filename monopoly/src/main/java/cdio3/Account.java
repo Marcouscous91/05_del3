@@ -1,6 +1,6 @@
 package cdio3;
 
-class Account {
+public class Account {
     
     //Should create a double that is "Balance"
     private double balance = 0;

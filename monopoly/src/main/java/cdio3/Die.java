@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.management.relation.Role;
 
-class Die{
+public class Die{
     private int faceValue;
     private int min;
     private int max;
