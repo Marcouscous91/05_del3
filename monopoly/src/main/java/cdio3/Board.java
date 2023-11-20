@@ -22,14 +22,25 @@ public class Board {
      * Param:   bank: the "actor" who will be the initial owner of property.
      */
     private void createPropertyManager(Actor bank){
-        Map<Integer, Property> properties = new HashMap<>();
-        properties.put(1, new Property("Baker", 2, bank, Color.RED));
-        properties.put(3, new Property("Marcus' House", 1, bank, Color.BROWN));
-        properties.put(4, new Property("Train Station", 1, bank, Color.PURPLE));
-        properties.put(5, new Property("School", 2, bank, Color.RED));
-        properties.put(6, new Property("Police Station", 3, bank, Color.BROWN));
-        properties.put(7, new Property("Restaurant", 2, bank, Color.PURPLE));
-       
+
+        Dictionary<Integer, Property> properties = new Hashtable<>();
+        properties.put(1, new Property("Burger Palace", 1, bank, Color.BROWN));
+        properties.put(2, new Property("Pizza Heaven", 1, bank, Color.BROWN));
+        properties.put(4, new Property("Candy Store", 1, bank, Color.LIGHTBLUE));
+        properties.put(5, new Property("Ice shop", 1, bank, Color.LIGHTBLUE));
+        properties.put(7, new Property("Museum", 2, bank, Color.PURPLE));
+        properties.put(8, new Property("Library", 2, bank, Color.PURPLE));
+        properties.put(10, new Property("Skate Park", 2, bank, Color.ORANGE));
+        properties.put(11, new Property("Swim Pool", 2, bank, Color.ORANGE));
+        properties.put(13, new Property("Casino", 3, bank, Color.RED));
+        properties.put(14, new Property("Cinema", 3, bank, Color.RED));
+        properties.put(16, new Property("Toy Store", 3, bank, Color.YELLOW));
+        properties.put(17, new Property("Pet Shop", 3, bank, Color.YELLOW));
+        properties.put(19, new Property("Bowling Alley", 4, bank, Color.GREEN));
+        properties.put(20, new Property("Zoo", 4, bank, Color.GREEN));
+        properties.put(22, new Property("Water World", 5, bank, Color.DARKBLUE));
+        properties.put(23, new Property("Beach Way", 5, bank, Color.DARKBLUE));
+
         propertyManager = new PropertyManager(properties);
     }
 
@@ -40,10 +51,18 @@ public class Board {
      * 
      * Param:   properties: the hashtable stored under the propertyManager object
      */
-    private void createFields(Map<Integer, Property> properties){
-        fields = new Field[8];
-        fields[0] = new Start("Start");
-        fields[2] = new Prison("Prison");
+
+    private void createFields(Dictionary<Integer, Property> properties){
+        fields = new Field[24];
+        fields[0] = new InertField("Start");
+        fields[6] = new InertField("Prison");
+        fields[12] = new InertField("Free Parking");
+        fields[18] = new Prison("Police station");
+        fields[3] = new InertField("Chance field 1");
+        fields[9] = new InertField("Chance field 2");
+        fields[15] = new InertField("Chance field 3");
+        fields[21] = new InertField("Chance field 4");
+
 
         for(int i = 0; i < fields.length; i++){
             if (fields[i] == null) {

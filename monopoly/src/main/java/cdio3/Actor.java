@@ -59,8 +59,8 @@ class Player extends Actor{
      */
     public void move(int dieSum){
         position += dieSum;
-        if(position > 7){
-            position -= 7;
+        if(position > 23){
+            position -= 23;
         }
     }
 
@@ -92,6 +92,10 @@ class Player extends Actor{
 
     public boolean inDebt(){
         return inDebt;
+    }
+
+    public void setPosition(int newPosition){
+        position = newPosition;
     }
 
     /*

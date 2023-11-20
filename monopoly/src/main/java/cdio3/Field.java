@@ -126,22 +126,28 @@ class Prison extends Field{
 
     @Override
     public boolean doAction(Player player){
-        player.ToPrison();
-        System.out.println("You done gone to prison");
-        return true;
+            player.ToPrison();
+            player.setPosition(6);
+            player.subtractSum(2);
+            System.out.println("You done gone to prison");
+            return true;
     }
-    
 }
 
-class Start extends Field{
-    public Start(String name){
+class InertField extends Field{
+    public InertField(String name){
         super(name);
     }
 
     @Override
     public boolean doAction(Player player){
-        player.addSum(2);
-        System.out.println("You land on start. Well done");
+        if(player.getPosition() == 6){
+            System.out.println("You're visiting prison");
+        } else if (player.getPosition() == 12) {
+            System.out.println("Great free parking");
+        } else if(player.getPosition() == 3 || player.getPosition() == 9 || player.getPosition() == 15 || player.getPosition() == 21){
+            System.out.println("This is a chance field, though it doesn't do anything");
+        }
         return true;
     }
 }
