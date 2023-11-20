@@ -49,14 +49,14 @@ class Board {
      */
     private void createFields(Dictionary<Integer, Property> properties){
         fields = new Field[24];
-        fields[0] = new Start("Start");
-        fields[6] = new IntertField("Prison");
-        fields[12] = new IntertField("Free Parking");
+        fields[0] = new InertField("Start");
+        fields[6] = new InertField("Prison");
+        fields[12] = new InertField("Free Parking");
         fields[18] = new Prison("Police station");
-        fields[3] = new IntertField("Chance field 1");
-        fields[9] = new IntertField("Chance field 2");
-        fields[15] = new IntertField("Chance field 3");
-        fields[21] = new IntertField("Chance field 4");
+        fields[3] = new InertField("Chance field 1");
+        fields[9] = new InertField("Chance field 2");
+        fields[15] = new InertField("Chance field 3");
+        fields[21] = new InertField("Chance field 4");
 
         for(int i = 0; i < fields.length; i++){
             if (fields[i] == null) {

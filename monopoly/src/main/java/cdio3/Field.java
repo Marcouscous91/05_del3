@@ -115,21 +115,8 @@ class Prison extends Field{
     }
 }
 
-class Start extends Field{
-    public Start(String name){
-        super(name);
-    }
-
-    @Override
-    public boolean doAction(Player player){
-        player.addSum(2);
-        System.out.println("You land on start. Well done");
-        return true;
-    }
-}
-
-class IntertField extends Field{
-    public IntertField(String name){
+class InertField extends Field{
+    public InertField(String name){
         super(name);
     }
 
