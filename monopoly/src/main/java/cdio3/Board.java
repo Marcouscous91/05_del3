@@ -52,7 +52,7 @@ class Board {
         fields[0] = new Start("Start");
         fields[6] = new IntertField("Prison");
         fields[12] = new IntertField("Free Parking");
-        fields[18] = new Prison("Go to Prison");
+        fields[18] = new Prison("Police station");
         fields[3] = new IntertField("Chance field 1");
         fields[9] = new IntertField("Chance field 2");
         fields[15] = new IntertField("Chance field 3");
