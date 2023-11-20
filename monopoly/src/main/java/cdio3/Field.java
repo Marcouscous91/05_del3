@@ -135,6 +135,13 @@ class IntertField extends Field{
 
     @Override
     public boolean doAction(Player player){
+        if(player.getPosition() == 6){
+            System.out.println("You're visiting prison");
+        } else if (player.getPosition() == 12) {
+            System.out.println("Great free parking");
+        } else if(player.getPosition() == 3 || player.getPosition() == 9 || player.getPosition() == 15 || player.getPosition() == 21){
+            System.out.println("This is a chance field, though it doesn't do anything");
+        }
         return true;
     }
 }
