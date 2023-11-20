@@ -21,22 +21,22 @@ class Board {
      */
     private void createPropertyManager(Actor bank){
         Dictionary<Integer, Property> properties = new Hashtable<>();
-        properties.put(1, new Property("Baker", 1, bank, Color.BROWN));
-        properties.put(2, new Property("Marcus' House", 1, bank, Color.BROWN));
-        properties.put(4, new Property("Train Station", 1, bank, Color.LIGHTBLUE));
-        properties.put(5, new Property("School", 1, bank, Color.LIGHTBLUE));
-        properties.put(7, new Property("Police Station", 2, bank, Color.PURPLE));
-        properties.put(8, new Property("Restaurant", 2, bank, Color.PURPLE));
-        properties.put(10, new Property("Field 10", 2, bank, Color.YELLOW));
-        properties.put(11, new Property("Field 11", 2, bank, Color.YELLOW));
-        properties.put(13, new Property("Field 13", 3, bank, Color.RED));
-        properties.put(14, new Property("Field 14", 3, bank, Color.RED));
-        properties.put(16, new Property("Field 16", 3, bank, Color.ORANGE));
-        properties.put(17, new Property("Field 17", 3, bank, Color.ORANGE));
-        properties.put(19, new Property("Field 19", 4, bank, Color.GREEN));
-        properties.put(20, new Property("Field 20", 4, bank, Color.GREEN));
-        properties.put(22, new Property("Field 22", 5, bank, Color.DARKBLUE));
-        properties.put(23, new Property("Field 23", 5, bank, Color.DARKBLUE));
+        properties.put(1, new Property("Burger Palace", 1, bank, Color.BROWN));
+        properties.put(2, new Property("Pizza Heaven", 1, bank, Color.BROWN));
+        properties.put(4, new Property("Candy Store", 1, bank, Color.LIGHTBLUE));
+        properties.put(5, new Property("Ice shop", 1, bank, Color.LIGHTBLUE));
+        properties.put(7, new Property("Museum", 2, bank, Color.PURPLE));
+        properties.put(8, new Property("Library", 2, bank, Color.PURPLE));
+        properties.put(10, new Property("Skate Park", 2, bank, Color.ORANGE));
+        properties.put(11, new Property("Swim Pool", 2, bank, Color.ORANGE));
+        properties.put(13, new Property("Casino", 3, bank, Color.RED));
+        properties.put(14, new Property("Cinema", 3, bank, Color.RED));
+        properties.put(16, new Property("Toy Store", 3, bank, Color.YELLOW));
+        properties.put(17, new Property("Pet Shop", 3, bank, Color.YELLOW));
+        properties.put(19, new Property("Bowling Alley", 4, bank, Color.GREEN));
+        properties.put(20, new Property("Zoo", 4, bank, Color.GREEN));
+        properties.put(22, new Property("Water World", 5, bank, Color.DARKBLUE));
+        properties.put(23, new Property("Beach Way", 5, bank, Color.DARKBLUE));
         propertyManager = new PropertyManager(properties);
     }
 
