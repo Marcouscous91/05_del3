@@ -36,6 +36,7 @@ class Property extends Field{
         return color;
     }
 
+
     public Actor getOwner(){
         return owner;
     }
@@ -46,6 +47,10 @@ class Property extends Field{
 
     public void doubleRent(){
         this.rent = cost * 2;
+
+    public double getCost(){
+        return cost;
+
     }
 
     /*
@@ -60,6 +65,7 @@ class Property extends Field{
         boolean canPay;
         canPay = player.transferMoney(owner, cost);
         if(canPay){
+            player.acquireProperty(this);
             owner = player;
             System.out.println("\nYou bought " + name + " for " + cost + "M");
         } else if(!canPay) {
