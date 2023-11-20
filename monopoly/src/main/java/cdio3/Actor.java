@@ -1,6 +1,6 @@
 package cdio3;
 
-abstract class Actor {
+public abstract class Actor {
     protected String name;
     protected Account account;
 
@@ -42,6 +42,7 @@ class Player extends Actor{
     private boolean inDebt;
     private double debt;
     private boolean inPrison;
+    private Property[] ownedProperties = new Property[16];
 
     public Player(String name){
         super();
@@ -60,6 +61,20 @@ class Player extends Actor{
         position += dieSum;
         if(position > 23){
             position -= 23;
+        }
+    }
+
+    /*
+     * Inserts bought property into an array of owned properties
+     * 
+     * Param:   property: the property being bought
+     */
+    public void acquireProperty(Property property){
+        for(int i = 0; i < ownedProperties.length; i++){
+            if(ownedProperties[i] == null){
+                ownedProperties[i] = property;
+                break;
+            }
         }
     }
 
@@ -98,6 +113,23 @@ class Player extends Actor{
             setBalance(0);
         }
         
+    }
+
+    /*
+     * Calculate the totalscore of player (Property value + balance)
+     * 
+     * Return:  totalSum: the total score of the player
+     */
+
+    public double getTotalScore(){
+        double totalSum = 0;
+        double propertySum = 0;
+        for(int i = 0; i < ownedProperties.length; i++){
+            if(ownedProperties[i] == null) break;
+            propertySum += ownedProperties[i].getCost();
+        }
+        totalSum = getBalance() + propertySum;
+        return totalSum;
     }
 
     /*
