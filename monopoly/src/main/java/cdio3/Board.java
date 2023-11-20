@@ -23,7 +23,7 @@ public class Board {
      */
     private void createPropertyManager(Actor bank){
 
-        Dictionary<Integer, Property> properties = new Hashtable<>();
+        Map<Integer, Property> properties = new HashMap<>();
         properties.put(1, new Property("Burger Palace", 1, bank, Color.BROWN));
         properties.put(2, new Property("Pizza Heaven", 1, bank, Color.BROWN));
         properties.put(4, new Property("Candy Store", 1, bank, Color.LIGHTBLUE));
@@ -52,7 +52,7 @@ public class Board {
      * Param:   properties: the hashtable stored under the propertyManager object
      */
 
-    private void createFields(Dictionary<Integer, Property> properties){
+    private void createFields(Map<Integer, Property> properties){
         fields = new Field[24];
         fields[0] = new InertField("Start");
         fields[6] = new InertField("Prison");
