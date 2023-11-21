@@ -6,7 +6,7 @@ class Game {
     private Player[] players;
     private Die die;
     private Board board;
-    private Player currenPlayer;
+    private Player currentPlayer;
     private Bank bank;
     private int numberOfPlayers;
 
@@ -60,7 +60,7 @@ class Game {
     }
 
     public Player getCurrentPlayer(){
-        return currenPlayer;
+        return currentPlayer;
     }
 
     public Player getPlayer(int playerNumber){
@@ -84,20 +84,20 @@ class Game {
      */
     public boolean movePlayer(int dieSum){
         boolean continueGame;
-        if(currenPlayer.inPrison()){
-            boolean canPay = currenPlayer.transferMoney(bank, 1);
+        if(currentPlayer.inPrison()){
+            boolean canPay = currentPlayer.transferMoney(bank, 1);
             if(!canPay){
                 return canPay;
             }
-            currenPlayer.outOfPrison();
+            currentPlayer.outOfPrison();
         }
-        boolean passStart = currenPlayer.move(dieSum);
+        boolean passStart = currentPlayer.move(dieSum);
         if (passStart) {
-            bank.transferMoney(currenPlayer, 2);
+            bank.transferMoney(currentPlayer, 2);
         }
-        String nameOfField = board.getField(currenPlayer.getPosition()).getName();
+        String nameOfField = board.getField(currentPlayer.getPosition()).getName();
         System.out.println("\nYou landed on " + nameOfField);
-        continueGame = board.movePlayer(currenPlayer);
+        continueGame = board.movePlayer(currentPlayer);
         return continueGame;
     }
 
@@ -160,6 +160,7 @@ class Game {
             if(!players[i].inDebt()){
                 double playerBalance = players[i].getBalance();
                 if(winnerBalance < playerBalance){
+                    isTie = false;
                     winner = players[i];
                     winnerBalance = playerBalance;
                 // Checks to see if there is a tie between one or more players.
@@ -215,7 +216,7 @@ class Game {
      */
     private boolean roll(Player player){
         boolean continueGame;
-        currenPlayer = player;
+        currentPlayer = player;
         die.roll();
         int dieSum = die.getFaceValue();
         continueGame = movePlayer(dieSum);

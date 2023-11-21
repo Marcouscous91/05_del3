@@ -1,8 +1,6 @@
 package cdio3;
 
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 public class Board {
@@ -57,12 +55,12 @@ public class Board {
         fields = new Field[24];
 
         fields[0] = new InertField("Start");
-        fields[6] = new InertField("Prison");
-        fields[12] = new InertField("Free Parking");
-        fields[18] = new Prison("Police station");
         fields[3] = new InertField("Chance field 1");
+        fields[6] = new InertField("Prison");
         fields[9] = new InertField("Chance field 2");
+        fields[12] = new InertField("Free Parking");
         fields[15] = new InertField("Chance field 3");
+        fields[18] = new Prison("Police station");
         fields[21] = new InertField("Chance field 4");
 
         for(int i = 0; i < fields.length; i++){
@@ -126,19 +124,6 @@ class PropertyManager{
 
     public Map<Integer, Property> getProperties() {
         return properties;
-    }
-
-    /*
-     * Pairs the properties by their color 
-     * (Used to keep track if they are owned by same player, thus doubling rent) 
-     */
-    public void pairPropertiesBeta(){
-        Property[] red = new Property[]{properties.get(1), properties.get(5)};
-        Property[] brown = new Property[]{properties.get(3), properties.get(4)};
-        Property[] purple = new Property[]{properties.get(4), properties.get(7)};
-        pairs.put(Color.RED, red);
-        pairs.put(Color.BROWN, brown);
-        pairs.put(Color.PURPLE, purple);
     }
 
     /*
