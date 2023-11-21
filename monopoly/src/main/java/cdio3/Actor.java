@@ -1,8 +1,9 @@
 package cdio3;
 
-abstract class Actor {
+public abstract class Actor {
     protected String name;
     protected Account account;
+    protected String token;
 
     public Actor(){
         this.account = new Account();
@@ -10,6 +11,14 @@ abstract class Actor {
 
     public String getName(){
         return name;
+    }
+    
+    public void setToken(String token){
+        this.token = token;
+    }
+
+    public String getToken(){
+        return token;
     }
 
     public void setBalance(double money){
@@ -42,6 +51,7 @@ class Player extends Actor{
     private boolean inDebt;
     private double debt;
     private boolean inPrison;
+    private Property[] ownedProperties = new Property[16];
 
     public Player(String name){
         super();
@@ -56,11 +66,32 @@ class Player extends Actor{
      * Makes sure that the player position is within the number of fields on board.
      * Param:   dieSum: the face value of the rolled die.
      */
-    public void move(int dieSum){
+    public boolean move(int dieSum){
+        boolean passStart = false;
         position += dieSum;
-        if(position > 7){
-            position -= 7;
+        if(position > 23){
+            position -= 23;
+            passStart = true;
         }
+        return passStart;
+    }
+
+    /*
+     * Inserts bought property into an array of owned properties
+     * 
+     * Param:   property: the property being bought
+     */
+    public void acquireProperty(Property property){
+        for(int i = 0; i < ownedProperties.length; i++){
+            if(ownedProperties[i] == null){
+                ownedProperties[i] = property;
+                break;
+            }
+        }
+    }
+
+    public boolean inPrison(){
+        return inPrison;
     }
 
     public void ToPrison(){
@@ -77,6 +108,10 @@ class Player extends Actor{
 
     public boolean inDebt(){
         return inDebt;
+    }
+
+    public void setPosition(int newPosition){
+        position = newPosition;
     }
 
     /*
@@ -97,6 +132,23 @@ class Player extends Actor{
     }
 
     /*
+     * Calculate the totalscore of player (Property value + balance)
+     * 
+     * Return:  totalSum: the total score of the player
+     */
+
+    public double getTotalScore(){
+        double totalSum = 0;
+        double propertySum = 0;
+        for(int i = 0; i < ownedProperties.length; i++){
+            if(ownedProperties[i] == null) break;
+            propertySum += ownedProperties[i].getCost();
+        }
+        totalSum = getBalance() + propertySum;
+        return totalSum;
+    }
+
+    /*
      * Transfers money from the players account to the receivers account.
      * Keeps track if the player has enough money to pay amount, and if the player goes in debt.
      * 
@@ -108,7 +160,10 @@ class Player extends Actor{
     @Override
     public boolean transferMoney(Actor receiver, double amount){
         boolean canPay;
-        if(this.getBalance() >= amount){
+        if(amount < 0){
+            receiver.transferMoney(this, Math.abs(amount));
+            canPay = true;
+        }else if(this.getBalance() >= amount){
             receiver.addSum(amount);
             this.subtractSum(amount);
             canPay = true;
@@ -128,12 +183,20 @@ class Bank extends Actor{
         super();
         this.setBalance(90);
         this.name = "Bank";
+        this.token = "Bank";
     }
+
+    
 
     @Override
     public boolean transferMoney(Actor receiver, double amount) {
-        this.subtractSum(amount);
-        receiver.addSum(amount);
+        if(getBalance() >= amount){
+            this.subtractSum(amount);
+            receiver.addSum(amount);
+        } else {
+            receiver.addSum(this.getBalance());
+            this.setBalance(0);
+        }
         return true;
     }
 }

@@ -1,6 +1,6 @@
 package cdio3;
 
-abstract class Field {
+public abstract class Field {
     protected String name;
 
     public Field(String name){
@@ -18,13 +18,13 @@ abstract class Field {
 }
 
 class Property extends Field{
-    private int cost;
-    private int rent;
+    private double cost;
+    private double rent;
     private Actor owner;
     private Color color;
 
 
-    public Property(String name, int cost, Actor bank, Color color){
+    public Property(String name, double cost, Actor bank, Color color){
         super(name);
         this.cost = cost;
         this.rent = cost;
@@ -34,6 +34,23 @@ class Property extends Field{
     
     public Color getColor(){
         return color;
+    }
+
+    public Actor getOwner(){
+        return owner;
+    }
+
+    public double getRent(){
+        return rent;
+    }
+  
+    public void doubleRent(){
+        this.rent = cost * 2;
+    }
+
+    public double getCost(){
+        return cost;
+
     }
 
     /*
@@ -48,6 +65,7 @@ class Property extends Field{
         boolean canPay;
         canPay = player.transferMoney(owner, cost);
         if(canPay){
+            player.acquireProperty(this);
             owner = player;
             System.out.println("\nYou bought " + name + " for " + cost + "M");
         } else if(!canPay) {
@@ -68,7 +86,7 @@ class Property extends Field{
         boolean canPay;
         canPay = player.transferMoney(owner, rent);
         if(canPay){
-            System.out.println("\nYou payed " + cost + " M to " + owner.getName() + " in rent");
+            System.out.println("\nYou payed " + rent + " M to " + owner.getName() + " in rent");
         }
         return canPay;
     }
@@ -87,7 +105,7 @@ class Property extends Field{
     @Override
     public boolean doAction(Player player){
         boolean canPay;
-        if(owner.getName().equals("Bank")){
+        if(!(owner instanceof Player)){
             canPay = buyProperty(player);
         } else if(owner instanceof Player && owner != player){
             canPay = payRent(player);
@@ -107,22 +125,28 @@ class Prison extends Field{
 
     @Override
     public boolean doAction(Player player){
-        player.ToPrison();
-        System.out.println("You done gone to prison");
-        return true;
+            player.ToPrison();
+            player.setPosition(6);
+            player.subtractSum(2);
+            System.out.println("You done gone to prison");
+            return true;
     }
-    
 }
 
-class Start extends Field{
-    public Start(String name){
+class InertField extends Field{
+    public InertField(String name){
         super(name);
     }
 
     @Override
     public boolean doAction(Player player){
-        player.addSum(2);
-        System.out.println("You land on start. Well done");
+        if(player.getPosition() == 6){
+            System.out.println("You're visiting prison");
+        } else if (player.getPosition() == 12) {
+            System.out.println("Great free parking");
+        } else if(player.getPosition() == 3 || player.getPosition() == 9 || player.getPosition() == 15 || player.getPosition() == 21){
+            System.out.println("This is a chance field, though it doesn't do anything");
+        }
         return true;
     }
 }

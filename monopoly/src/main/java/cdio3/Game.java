@@ -33,6 +33,17 @@ class Game {
             System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");
             pressEnter.nextLine();
             boolean continueGame = roll(players[i]);
+            // Searches for winning player, if a player loses
+            if(!continueGame){
+                Player winner = checkWinner();
+                System.out.println(
+                    "Congratulations! \n" + 
+                    winner.getName() + " wins the game, with a total amount of " 
+                    + winner.getBalance() + "M, and wins the title of 'Biggest Capitalist Pig'!"
+                    );
+                System.out.println("\nThank you for playing!");
+                break;
+            }
             // Resets the for-loop, according to number of players.
             if(i == numberOfPlayers - 1){
                 i = -1;
@@ -40,8 +51,20 @@ class Game {
         }
     }
 
+    public Board getBoard(){
+        return board;
+    }
+
+    public Player[] getPlayers(){
+        return players;
+    }
+
     public Player getCurrentPlayer(){
         return currenPlayer;
+    }
+
+    public Player getPlayer(int playerNumber){
+        return players[playerNumber - 1];
     }
     
     /*
@@ -51,6 +74,8 @@ class Game {
      * corresponding field.
      * Calls on the movePlayer() action of the board, which will initiate the action according,
      * to the field the player lands on.
+     * Checks if player is in prison, and makes them pay accordingly.
+     * Checks if player lands on, or passes start, and receives accordingly.
      * 
      * Param:   dieSum: the face value of the die rolled.
      * 
@@ -59,7 +84,17 @@ class Game {
      */
     public boolean movePlayer(int dieSum){
         boolean continueGame;
-        currenPlayer.move(dieSum);
+        if(currenPlayer.inPrison()){
+            boolean canPay = currenPlayer.transferMoney(bank, 1);
+            if(!canPay){
+                return canPay;
+            }
+            currenPlayer.outOfPrison();
+        }
+        boolean passStart = currenPlayer.move(dieSum);
+        if (passStart) {
+            bank.transferMoney(currenPlayer, 2);
+        }
         String nameOfField = board.getField(currenPlayer.getPosition()).getName();
         System.out.println("\nYou landed on " + nameOfField);
         continueGame = board.movePlayer(currenPlayer);
@@ -86,9 +121,87 @@ class Game {
                 bank.transferMoney(this.players[i], 18); 
             } else if (numberOfPlayers == 4){
                 bank.transferMoney(this.players[i], 16); 
-            }  
+            }
+            
+            switch (i) {
+                case 0:
+                    players[i].setToken("#");
+                    break;
+                case 1:
+                    players[i].setToken("@");
+                    break;
+                case 2:
+                    players[i].setToken("$");
+                    break;
+                case 3:
+                    players[i].setToken("%");
+                    break;
+                default:
+                    break;
+            }
         }
     }
+
+    /*
+     * Searches for the player with the highest amount on their balance - in case of tie,
+     * searches for the player with highest over all score, according to amount of properties and 
+     * their cost.
+     * 
+     * Return:  winner: the player with highest score
+     */
+    private Player checkWinner(){
+        boolean isTie = false;
+        double winnerBalance = 0;
+        Player winner = null;
+        int tieCounter = 0;
+        Player[] playersInTie = new Player[numberOfPlayers - 1];
+        // Searches for the highest balance and notates the player
+        for(int i = 0; i < numberOfPlayers; i++){
+            if(!players[i].inDebt()){
+                double playerBalance = players[i].getBalance();
+                if(winnerBalance < playerBalance){
+                    winner = players[i];
+                    winnerBalance = playerBalance;
+                // Checks to see if there is a tie between one or more players.
+                } else if((winnerBalance == playerBalance) && (winnerBalance != 0)){
+                    isTie = true;
+                    playersInTie[tieCounter] = players[i];
+                    tieCounter++;
+                }
+            }
+        }
+
+
+        if(isTie){
+            winner = resolveTie(playersInTie);
+        }
+
+        return winner;
+    }
+
+    /*
+     * Searches through max total score between players, if there is a tie between max balance.
+     * 
+     * Param:   playersInTie: array of players in tie
+     * 
+     * Return:  winner: the player who has the highest overall score.
+     */
+    private Player resolveTie(Player[] playersInTie){
+        Player winner = null;
+        double winnerBalance = 0;
+
+        for(Player player: playersInTie){
+            if(player == null){
+                continue;
+            } else if(winnerBalance < player.getTotalScore()){
+                winner = player;
+                winnerBalance = player.getTotalScore();
+            }
+        }
+
+        return winner;
+    }
+
 
     /*
      * Determines the current player, who's turn it is.
