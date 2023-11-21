@@ -1,0 +1,25 @@
+//Field names//
+=============================
+0:Burger Palace
+1:Pizza Heaven	
+2:Water World
+3:Police Station
+4:Cinema
+
+//Property output print//
+=============================
+5:can't buy
+6:has bought
+7:pays rent to
+8:can't pay rent
+
+//Win / lose scenarios//
+=============================
+9:Congratulations!
+10:has won the game with
+11:points
+
+//Other//
+=============================
+12:M
+
