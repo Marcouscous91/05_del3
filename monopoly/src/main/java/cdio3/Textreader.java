@@ -13,25 +13,37 @@ class Textreader {
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
-                scanner.nextLine(); // this is not used for other purpose than movin to the next line in the
-                                            // while loop
-                lines++;
+                String l = scanner.nextLine(); // this is not used for other purpose than movin to the next line in the
+                try {
+                    Integer.parseInt(l.toCharArray()[0]+"");
+                    lines++;
+                } catch (IllegalArgumentException e) {
+                    continue;
+                }                          
             }
         } catch (IOException e) {
             System.err.println("Error reading file: " + filename);
         }
 
         String[] fullFile = new String[lines];
-        
-        try {
+            try {
             Scanner scanner = new Scanner(file);
             for (int i = 0; scanner.hasNextLine(); i++) {
+                int index;
                 String l = scanner.nextLine();
-                fullFile[i] = l;
+                try{
+                    String[] lineSplitted = l.split(":");
+                    index = Integer.parseInt(lineSplitted[0]);
+                    fullFile[index] = lineSplitted[1];
+                }catch (IllegalArgumentException e){
+                    continue;
+                }
             }
 
         } catch (IOException e) {
             System.err.println("Error reading file: " + filename);
         }
+
+
     }
 }
