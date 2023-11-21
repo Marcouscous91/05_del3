@@ -57,12 +57,12 @@ public class Board {
         fields = new Field[24];
 
         fields[0] = new InertField("Start");
-        fields[6] = new InertField("Prison");
-        fields[12] = new InertField("Free Parking");
-        fields[18] = new Prison("Police station");
         fields[3] = new InertField("Chance field 1");
+        fields[6] = new InertField("Prison");
         fields[9] = new InertField("Chance field 2");
+        fields[12] = new InertField("Free Parking");
         fields[15] = new InertField("Chance field 3");
+        fields[18] = new Prison("Police station");
         fields[21] = new InertField("Chance field 4");
 
         for(int i = 0; i < fields.length; i++){
