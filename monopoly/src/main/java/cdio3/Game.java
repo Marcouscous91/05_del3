@@ -51,8 +51,20 @@ class Game {
         }
     }
 
+    public Board getBoard(){
+        return board;
+    }
+
+    public Player[] getPlayers(){
+        return players;
+    }
+
     public Player getCurrentPlayer(){
         return currenPlayer;
+    }
+
+    public Player getPlayer(int playerNumber){
+        return players[playerNumber - 1];
     }
     
     /*
@@ -109,7 +121,24 @@ class Game {
                 bank.transferMoney(this.players[i], 18); 
             } else if (numberOfPlayers == 4){
                 bank.transferMoney(this.players[i], 16); 
-            }  
+            }
+            
+            switch (i) {
+                case 0:
+                    players[i].setToken("#");
+                    break;
+                case 1:
+                    players[i].setToken("@");
+                    break;
+                case 2:
+                    players[i].setToken("$");
+                    break;
+                case 3:
+                    players[i].setToken("%");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

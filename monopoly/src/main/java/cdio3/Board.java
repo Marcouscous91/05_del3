@@ -41,6 +41,7 @@ public class Board {
         properties.put(22, new Property("Water World", 5, bank, Color.DARKBLUE));
         properties.put(23, new Property("Beach Way", 5, bank, Color.DARKBLUE));
 
+
         propertyManager = new PropertyManager(properties);
     }
 
@@ -54,6 +55,7 @@ public class Board {
 
     private void createFields(Map<Integer, Property> properties){
         fields = new Field[24];
+
         fields[0] = new InertField("Start");
         fields[6] = new InertField("Prison");
         fields[12] = new InertField("Free Parking");
@@ -62,7 +64,6 @@ public class Board {
         fields[9] = new InertField("Chance field 2");
         fields[15] = new InertField("Chance field 3");
         fields[21] = new InertField("Chance field 4");
-
 
         for(int i = 0; i < fields.length; i++){
             if (fields[i] == null) {
@@ -80,6 +81,10 @@ public class Board {
      */
     public Field getField(int position) {
         return fields[position];
+    }
+
+    public Property getProperty(int position){
+        return propertyManager.getProperties().get(position);
     }
 
     /*
