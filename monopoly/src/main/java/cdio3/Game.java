@@ -9,7 +9,6 @@ class Game {
     private Player currenPlayer;
     private Bank bank;
     private int numberOfPlayers;
-    private GUI_Board boardDisplay;
 
     public Game(int numberOfPlayers){
         this.numberOfPlayers = numberOfPlayers;
@@ -18,7 +17,6 @@ class Game {
         die = new Die(1, 6);
         createPlayers(numberOfPlayers);
         board = new Board(bank);
-        boardDisplay = new GUI_Board(this);
     }
 
     /* 
@@ -35,7 +33,6 @@ class Game {
             System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");
             pressEnter.nextLine();
             boolean continueGame = roll(players[i]);
-            System.out.println(boardDisplay.boardToString("Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin. The first two words themselves are a truncation of dolorem ipsum ('pain itself')."));
             // Resets the for-loop, according to number of players.
             if(i == numberOfPlayers - 1){
                 i = -1;
