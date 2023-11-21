@@ -10,7 +10,8 @@ class Textreader {
 
     public static void loadFile(String filename){
         URL path = Textreader.class.getResource(filename);
-        File file = new File(path.getPath());
+        String pathName = path.getFile();
+        File file = new File(pathName);
         int lines = 0;
         
         // Counts the number of lines of text to be printed out, without counting empty spaces and headlines
@@ -53,7 +54,7 @@ class Textreader {
         }
     }
 
-    public String getTextLineToPrint(int lineNumber) {
+    public static String getTextLineToPrint(int lineNumber) {
         String getTextLineToPrint = fullFile[lineNumber];
         return getTextLineToPrint;
     }
