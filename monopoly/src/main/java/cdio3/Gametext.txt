@@ -21,22 +21,22 @@
 =============================
 16:You bought 
 17: for 
-18:M
+18: M
 19:You don’t have enough money to buy 
 20:You paid 
 21: M to 
 22: in rent
-23:You’re done, go to prison
-24:You’re visiting prison
+23:You are done, go to prison
+24:You are visiting prison
 25:Great, free parking!
-26:This is a chance field, it doesn’t do anything
+26:This is a chance field, it does not do anything
 
 //Game.java//
 =============================
 27:, please press enter to roll dice!
 28:Congratulations!
 29: wins the game, with a total amount of 
-30:M, and wins the title of ‘Biggest Capitalist Pig’!
+30: M, and wins the title of Biggest Capitalist Pig!
 31:Thank you for playing
 32:You landed on 
 33:Enter name of Player 
