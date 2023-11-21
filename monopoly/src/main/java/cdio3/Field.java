@@ -3,7 +3,7 @@ package cdio3;
 public abstract class Field {
     protected String name;
 
-    public Field(String name){
+    public Field(String name) {
         this.name = name;
     }
 
@@ -12,81 +12,82 @@ public abstract class Field {
      */
     abstract public boolean doAction(Player player);
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 }
 
-class Property extends Field{
+class Property extends Field {
     private double cost;
     private double rent;
     private Actor owner;
     private Color color;
 
-
-    public Property(String name, double cost, Actor bank, Color color){
+    public Property(String name, double cost, Actor bank, Color color) {
         super(name);
         this.cost = cost;
         this.rent = cost;
         this.owner = bank;
         this.color = color;
     }
-    
-    public Color getColor(){
+
+    public Color getColor() {
         return color;
     }
 
-    public Actor getOwner(){
+    public Actor getOwner() {
         return owner;
     }
 
-    public double getRent(){
+    public double getRent() {
         return rent;
     }
-  
-    public void doubleRent(){
+
+    public void doubleRent() {
         this.rent = cost * 2;
     }
 
-    public double getCost(){
+    public double getCost() {
         return cost;
 
     }
 
     /*
      * Initiates the purchase of the property.
-     * Keeps track if the player has enough money to purchase or not. Sets the owner accordingly
+     * Keeps track if the player has enough money to purchase or not. Sets the owner
+     * accordingly
      * 
-     * Param:   player: the player who is making the purchase.
+     * Param: player: the player who is making the purchase.
      * 
-     * Return:  canPay: boolean depending if player can perform purchase.
+     * Return: canPay: boolean depending if player can perform purchase.
      */
-    private boolean buyProperty(Player player){
+    private boolean buyProperty(Player player) {
         boolean canPay;
         canPay = player.transferMoney(owner, cost);
-        if(canPay){
+        if (canPay) {
             player.acquireProperty(this);
             owner = player;
-            System.out.println("\nYou bought " + name + " for " + cost + "M");
-        } else if(!canPay) {
-            System.out.println("\nYou don't have enough money to buy " + this.name);
+            System.out.println("\nYou bought " + name + " for " + cost + "M");// 16 + 17 + 18
+        } else if (!canPay) {
+            System.out.println("\nYou don't have enough money to buy " + this.name);// 19
         }
         return canPay;
     }
 
     /*
      * Initiates the payment of rent.
-     * Keeps track if the player has enough money to pay rent or not. Sets the owner accordingly
+     * Keeps track if the player has enough money to pay rent or not. Sets the owner
+     * accordingly
      * 
-     * Param:   player: the player who is paying rent.
+     * Param: player: the player who is paying rent.
      * 
-     * Return:  canPay: boolean depending if player can pay.
+     * Return: canPay: boolean depending if player can pay.
      */
-    private boolean payRent(Player player){
+    private boolean payRent(Player player) {
         boolean canPay;
         canPay = player.transferMoney(owner, rent);
-        if(canPay){
-            System.out.println("\nYou payed " + rent + " M to " + owner.getName() + " in rent");
+        if (canPay) {
+            System.out.println("\nYou payed " + rent + " M to " + owner.getName() + " in rent");// 20 + 21 + 22
         }
         return canPay;
     }
@@ -98,16 +99,16 @@ class Property extends Field{
      * 2) Property owned by other player -> player pays rent to owner
      * 3) Property owned by player -> nothing happens.
      * 
-     * Param:   player: the player who is paying rent.
+     * Param: player: the player who is paying rent.
      * 
-     * Return:  canPay: boolean depending if player can pay according to scenario.
+     * Return: canPay: boolean depending if player can pay according to scenario.
      */
     @Override
-    public boolean doAction(Player player){
+    public boolean doAction(Player player) {
         boolean canPay;
-        if(!(owner instanceof Player)){
+        if (!(owner instanceof Player)) {
             canPay = buyProperty(player);
-        } else if(owner instanceof Player && owner != player){
+        } else if (owner instanceof Player && owner != player) {
             canPay = payRent(player);
         } else {
             return true;
@@ -117,40 +118,41 @@ class Property extends Field{
 
 }
 
-class Prison extends Field{
+class Prison extends Field {
 
-    public Prison(String name){
+    public Prison(String name) {
         super(name);
     }
 
     @Override
-    public boolean doAction(Player player){
-            player.ToPrison();
-            player.setPosition(6);
-            System.out.println("You done gone to prison");
-            return true;
+    public boolean doAction(Player player) {
+        player.ToPrison();
+        player.setPosition(6);
+        System.out.println("You done gone to prison");// 23
+        return true;
     }
 }
 
-class InertField extends Field{
-    public InertField(String name){
+class InertField extends Field {
+    public InertField(String name) {
         super(name);
     }
 
     @Override
-    public boolean doAction(Player player){
-        if(player.getPosition() == 6){
-            System.out.println("You're visiting prison");
+    public boolean doAction(Player player) {
+        if (player.getPosition() == 6) {
+            System.out.println("You're visiting prison");// 24
         } else if (player.getPosition() == 12) {
-            System.out.println("Great free parking");
-        } else if(player.getPosition() == 3 || player.getPosition() == 9 || player.getPosition() == 15 || player.getPosition() == 21){
-            System.out.println("This is a chance field, though it doesn't do anything");
+            System.out.println("Great free parking");// 25
+        } else if (player.getPosition() == 3 || player.getPosition() == 9 || player.getPosition() == 15
+                || player.getPosition() == 21) {
+            System.out.println("This is a chance field, though it doesn't do anything");// 26
         }
         return true;
     }
 }
 
-enum Color{
+enum Color {
     BROWN,
     LIGHTBLUE,
     PURPLE,
