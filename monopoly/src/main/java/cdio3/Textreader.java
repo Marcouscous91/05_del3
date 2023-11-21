@@ -12,7 +12,8 @@ class Textreader {
         URL path = Textreader.class.getResource(filename);
         File file = new File(path.getPath());
         int lines = 0;
-
+        
+        // Counts the number of lines of text to be printed out, without counting empty spaces and headlines
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
@@ -30,8 +31,10 @@ class Textreader {
             System.err.println("Error reading file: " + filename);
         }
 
-        fullFile = new String[lines];
-            try {
+        fullFile = new String[lines]; //Array of length equal to number of lines of text from file
+        
+        // Puts te text to be printed out, into array, according to their indexed number
+        try {
             Scanner scanner = new Scanner(file);
             for (int i = 0; scanner.hasNextLine(); i++) {
                 int index;
