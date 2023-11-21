@@ -127,7 +127,6 @@ class Prison extends Field{
     public boolean doAction(Player player){
             player.ToPrison();
             player.setPosition(6);
-            player.subtractSum(2);
             System.out.println("You done gone to prison");
             return true;
     }
