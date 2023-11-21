@@ -3,14 +3,15 @@ package cdio3;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import java.net.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 class Textreader {
     private static String[] fullFile;
 
     public static void loadFile(String filename){
-        URL path = Textreader.class.getResource(filename);
-        String pathName = path.getFile();
+        Path currentRelPath = Paths.get("src\\main\\java\\cdio3\\" + filename);
+        String pathName = currentRelPath.toAbsolutePath().toString();
         File file = new File(pathName);
         int lines = 0;
         
