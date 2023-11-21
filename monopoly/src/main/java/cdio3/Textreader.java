@@ -1,38 +1,37 @@
-package main.java.cdio3;
+package cdio3;
 
+import java.io.File;
 import java.io.IOException;
-import java.utils.Scanner;
+import java.util.Scanner;
 
 class Textreader {
     public static void main(String[] args) {
-        var filename = "Gametext.txt";
-        var file = new java.io.file(filename);
-        var lines = 0;
+        String filename = "Gametext.txt";
+        File file = new File(filename);
+        int lines = 0;
 
         try {
-            var Scanner = new java.util.Scanner(file);
-            while (Scanner.hasNextLine()) {
-                var j = Scanner.nextLine(); // this is not used for other purpose than movin to the next line in the
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                scanner.nextLine(); // this is not used for other purpose than movin to the next line in the
                                             // while loop
                 lines++;
             }
         } catch (IOException e) {
-            System.err.println("Error reading file: " + filePath);
-            e.printStackTrace();
+            System.err.println("Error reading file: " + filename);
         }
 
-        String[] fullFile;
-        fullFile = new String[lines];
+        String[] fullFile = new String[lines];
+        
         try {
-            var Scanner = new java.util.Scanner(file);
-            for (i = 0; Scanner.hasNextLine(); i++) {
-                var l = Scanner.nextLine();
+            Scanner scanner = new Scanner(file);
+            for (int i = 0; scanner.hasNextLine(); i++) {
+                String l = scanner.nextLine();
                 fullFile[i] = l;
             }
 
         } catch (IOException e) {
-            System.err.println("Error reading file: " + filePath);
-            e.printStackTrace();
+            System.err.println("Error reading file: " + filename);
         }
     }
 }
