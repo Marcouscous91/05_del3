@@ -66,11 +66,14 @@ class Player extends Actor{
      * Makes sure that the player position is within the number of fields on board.
      * Param:   dieSum: the face value of the rolled die.
      */
-    public void move(int dieSum){
+    public boolean move(int dieSum){
+        boolean passStart = false;
         position += dieSum;
         if(position > 23){
             position -= 23;
+            passStart = true;
         }
+        return passStart;
     }
 
     /*
@@ -87,7 +90,9 @@ class Player extends Actor{
         }
     }
 
-    
+    public boolean inPrison(){
+        return inPrison;
+    }
 
     public void ToPrison(){
         inPrison = true;
@@ -155,7 +160,10 @@ class Player extends Actor{
     @Override
     public boolean transferMoney(Actor receiver, double amount){
         boolean canPay;
-        if(this.getBalance() >= amount){
+        if(amount < 0){
+            receiver.transferMoney(this, Math.abs(amount));
+            canPay = true;
+        }else if(this.getBalance() >= amount){
             receiver.addSum(amount);
             this.subtractSum(amount);
             canPay = true;
@@ -178,10 +186,17 @@ class Bank extends Actor{
         this.token = "Bank";
     }
 
+    
+
     @Override
     public boolean transferMoney(Actor receiver, double amount) {
-        this.subtractSum(amount);
-        receiver.addSum(amount);
+        if(getBalance() >= amount){
+            this.subtractSum(amount);
+            receiver.addSum(amount);
+        } else {
+            receiver.addSum(this.getBalance());
+            this.setBalance(0);
+        }
         return true;
     }
 }

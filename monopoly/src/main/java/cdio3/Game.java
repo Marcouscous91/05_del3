@@ -74,6 +74,8 @@ class Game {
      * corresponding field.
      * Calls on the movePlayer() action of the board, which will initiate the action according,
      * to the field the player lands on.
+     * Checks if player is in prison, and makes them pay accordingly.
+     * Checks if player lands on, or passes start, and receives accordingly.
      * 
      * Param:   dieSum: the face value of the die rolled.
      * 
@@ -82,7 +84,17 @@ class Game {
      */
     public boolean movePlayer(int dieSum){
         boolean continueGame;
-        currenPlayer.move(dieSum);
+        if(currenPlayer.inPrison()){
+            boolean canPay = currenPlayer.transferMoney(bank, 1);
+            if(!canPay){
+                return canPay;
+            }
+            currenPlayer.outOfPrison();
+        }
+        boolean passStart = currenPlayer.move(dieSum);
+        if (passStart) {
+            bank.transferMoney(currenPlayer, 2);
+        }
         String nameOfField = board.getField(currenPlayer.getPosition()).getName();
         System.out.println("\nYou landed on " + nameOfField);
         continueGame = board.movePlayer(currenPlayer);
