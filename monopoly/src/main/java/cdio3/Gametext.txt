@@ -1,44 +1,25 @@
-welcome1.getNumberOfPlayers: Enter number of player:
-welcome2.getNameOfPlayer:Enter name of player:
-welcome3.getNameOfYongestPlayer:Enter name of youngest player:
+//Field names//
+=============================
+0:Burger Palace
+1:Pizza Heaven	
+2:Water World
+3:Police Station
+4:Cinema
 
-throw.die1:, please press enter to roll dice!:
-moveToField:You landed on :
-boughtField1:You bought :
-boughtField2: 
+//Property output print//
+=============================
+5:can't buy
+6:has bought
+7:pays rent to
+8:can't pay rent
 
+//Win / lose scenarios//
+=============================
+9:Congratulations!
+10:has won the game with
+11:points
 
-board.field.start:Start:
-
-board.field.burgerbaren:Burger Bar:
-board.field.pizzaria:Pizzaria:
-
-board.field.slikbutikken:Candy Store:
-board.field.iskiosken:Ice Cream Store:
-
-board.field.besogFaengslet:Visit the Prison:
-
-board.field.museet:Museum:
-board.field.biblioteket:Library:
-
-board.field.skateparken:Skate Park:
-board.field.svoemmebassinet:Swimming Pool:
-
-board.field.parkering:Free Parking:
-
-board.field.spillehallen:Arcade:
-board.field.biografen:Cinema:
-
-board.field.legetøjsbutik:Toy Store:
-board.field.dyrehandlen:Pet Store:
-
-board.field.gaaIFaensel:Go to Prison:
-
-board.field.bowlinghallen:Bowling Alley:
-board.field.zoo:Zoo:
-
-board.field.vandland:Water Park:
-board.field.standpromenaden:Promenade:
-
-board.field.chance:Chance:
+//Other//
+=============================
+12:M
 

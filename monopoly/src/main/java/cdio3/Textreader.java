@@ -3,11 +3,14 @@ package cdio3;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import java.net.*;
 
 class Textreader {
-    public static void main(String[] args) {
-        String filename = "Gametext.txt";
-        File file = new File(filename);
+    private static String[] fullFile;
+
+    public static void loadFile(String filename){
+        URL path = Textreader.class.getResource(filename);
+        File file = new File(path.getPath());
         int lines = 0;
 
         try {
@@ -15,8 +18,10 @@ class Textreader {
             while (scanner.hasNextLine()) {
                 String l = scanner.nextLine(); // this is not used for other purpose than movin to the next line in the
                 try {
-                    Integer.parseInt(l.toCharArray()[0]+"");
-                    lines++;
+                    if(l != ""){
+                        Integer.parseInt(l.toCharArray()[0]+"");
+                        lines++;
+                    }
                 } catch (IllegalArgumentException e) {
                     continue;
                 }                          
@@ -25,7 +30,7 @@ class Textreader {
             System.err.println("Error reading file: " + filename);
         }
 
-        String[] fullFile = new String[lines];
+        fullFile = new String[lines];
             try {
             Scanner scanner = new Scanner(file);
             for (int i = 0; scanner.hasNextLine(); i++) {
@@ -43,7 +48,10 @@ class Textreader {
         } catch (IOException e) {
             System.err.println("Error reading file: " + filename);
         }
+    }
 
-
+    public String getTextLineToPrint(int lineNumber) {
+        String getTextLineToPrint = fullFile[lineNumber];
+        return getTextLineToPrint;
     }
 }
