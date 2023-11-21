@@ -27,7 +27,7 @@ class Monopoly {
             Game monopoly = new Game(numberOfPlayers);
             monopoly.play();
         } catch (IllegalArgumentException a) {
-            System.out.println("\nNumber of Players, must be a number between 2 and 4.");// 34
+            System.out.println("\n"+Textreader.getTextLineToPrint(34));// 34
             play();
         }
     }

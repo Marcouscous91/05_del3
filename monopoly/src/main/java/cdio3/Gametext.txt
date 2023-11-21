@@ -1,26 +1,48 @@
-//Field names//
+//Board.java// - OK
 =============================
 0:Burger Palace
-1:Pizza Heaven	
-2:Water World
-3:Police Station
-4:Cinema
+1:Pizza Heaven
+2:Candy Store
+3:Ice Shop
+4:Museum
+5:Library
+6:Skate Park
+7:Swim Pool
+8:Casino
+9:Cinema
+10:Toy Store
+11:Pet Shop
+12:Bowling Alley
+13:Zoo
+14:Water World
+15:Promenade
 
-//Property output print//
+//Fields.java// - OK
 =============================
-5:can't buy
-6:has bought
-7:pays rent to
-8:can't pay rent
+16:You bought 
+17: for 
+18:M
+19:You don’t have enough money to buy 
+20:You paid 
+21: M to 
+22: in rent
+23:You’re done, go to prison
+24:You’re visiting prison
+25:Great, free parking!
+26:This is a chance field, it doesn’t do anything
 
-//Win / lose scenarios//
+//Game.java//
 =============================
-9:Congratulations!
-10:has won the game with
-11:points
+27:, please press enter to roll dice!
+28:Congratulations!
+29: wins the game, with a total amount of 
+30:M, and wins the title of ‘Biggest Capitalist Pig’!
+31:Thank you for playing
+32:You landed on 
+33:Enter name of Player 
 
-//Other//
+//Monopoly.java// - OK
 =============================
-12:M
-13:Enter number of players:
+34:Number of Players, must be a number between 2 and 4.
+35:Enter number of players,
 

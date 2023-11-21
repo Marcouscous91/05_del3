@@ -30,18 +30,17 @@ class Game {
         Scanner pressEnter = new Scanner(System.in);
         // Loop to keep game going
         for (int i = 0; i < numberOfPlayers; i++) {
-            System.out.println("\n" + players[i].getName() + ", please press enter to roll dice!");// 27
+            System.out.println("\n" + players[i].getName() + Textreader.getTextLineToPrint(27));// 27
             pressEnter.nextLine();
             boolean continueGame = roll(players[i]);
             // Searches for winning player, if a player loses
             if (!continueGame) {
                 Player winner = checkWinner();
-                System.out.println(
-                        "Congratulations! \n" + // 28
-                                winner.getName() + " wins the game, with a total amount of " // 29
-                                + winner.getBalance() + "M, and wins the title of 'Biggest Capitalist Pig'!"// 30
+                System.out.println(Textreader.getTextLineToPrint(28) + "\n" + // 28
+                                winner.getName() + Textreader.getTextLineToPrint(29) // 29
+                                + winner.getBalance() + Textreader.getTextLineToPrint(30)// 30
                 );
-                System.out.println("\nThank you for playing!");//
+                System.out.println("\n" + Textreader.getTextLineToPrint(31));//31
                 break;
             }
             // Resets the for-loop, according to number of players.
@@ -99,7 +98,7 @@ class Game {
             bank.transferMoney(currentPlayer, 2);
         }
         String nameOfField = board.getField(currentPlayer.getPosition()).getName();
-        System.out.println("\nYou landed on " + nameOfField);// 32
+        System.out.println("\n" + Textreader.getTextLineToPrint(32) + nameOfField);// 32
         continueGame = board.movePlayer(currentPlayer);
         return continueGame;
     }
@@ -117,7 +116,7 @@ class Game {
         this.players = new Player[numberOfPlayers];
 
         for (int i = 0; i < players.length; i++) {
-            System.out.println("Enter name of Player " + (i + 1));// 33
+            System.out.println(Textreader.getTextLineToPrint(33) + (i + 1));// 33
             String playerName = input.nextLine();
             this.players[i] = new Player(playerName);
             if (numberOfPlayers == 2) {

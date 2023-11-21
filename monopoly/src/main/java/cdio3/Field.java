@@ -67,9 +67,11 @@ class Property extends Field {
         if (canPay) {
             player.acquireProperty(this);
             owner = player;
-            System.out.println("\nYou bought " + name + " for " + cost + "M");// 16 + 17 + 18
+            System.out.println("\n" + Textreader.getTextLineToPrint(16) + name + 
+            Textreader.getTextLineToPrint(17) + cost + 
+            Textreader.getTextLineToPrint(18));// 16 + 17 + 18
         } else if (!canPay) {
-            System.out.println("\nYou don't have enough money to buy " + this.name);// 19
+            System.out.println("\n" + Textreader.getTextLineToPrint(19) + this.name);// 19
         }
         return canPay;
     }
@@ -87,7 +89,9 @@ class Property extends Field {
         boolean canPay;
         canPay = player.transferMoney(owner, rent);
         if (canPay) {
-            System.out.println("\nYou payed " + rent + " M to " + owner.getName() + " in rent");// 20 + 21 + 22
+            System.out.println("\n" + Textreader.getTextLineToPrint(20) + 
+            rent + Textreader.getTextLineToPrint(21) + owner.getName() + 
+            Textreader.getTextLineToPrint(22));// 20 + 21 + 22
         }
         return canPay;
     }
@@ -128,7 +132,7 @@ class Prison extends Field {
     public boolean doAction(Player player) {
         player.ToPrison();
         player.setPosition(6);
-        System.out.println("You done gone to prison");// 23
+        System.out.println(Textreader.getTextLineToPrint(23));// 23
         return true;
     }
 }
@@ -141,12 +145,12 @@ class InertField extends Field {
     @Override
     public boolean doAction(Player player) {
         if (player.getPosition() == 6) {
-            System.out.println("You're visiting prison");// 24
+            System.out.println(Textreader.getTextLineToPrint(24));// 24
         } else if (player.getPosition() == 12) {
-            System.out.println("Great free parking");// 25
+            System.out.println(Textreader.getTextLineToPrint(25));// 25
         } else if (player.getPosition() == 3 || player.getPosition() == 9 || player.getPosition() == 15
                 || player.getPosition() == 21) {
-            System.out.println("This is a chance field, though it doesn't do anything");// 26
+            System.out.println(Textreader.getTextLineToPrint(26));// 26
         }
         return true;
     }

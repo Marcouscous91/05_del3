@@ -24,22 +24,22 @@ public class Board {
     private void createPropertyManager(Actor bank) {
 
         Map<Integer, Property> properties = new HashMap<>();
-        properties.put(1, new Property("Burger Palace", 1, bank, Color.BROWN));// 0
-        properties.put(2, new Property("Pizza Heaven", 1, bank, Color.BROWN));// 1
-        properties.put(4, new Property("Candy Store", 1, bank, Color.LIGHTBLUE));// 2
-        properties.put(5, new Property("Ice shop", 1, bank, Color.LIGHTBLUE));// 3
-        properties.put(7, new Property("Museum", 2, bank, Color.PURPLE));// 4
-        properties.put(8, new Property("Library", 2, bank, Color.PURPLE));// 5
-        properties.put(10, new Property("Skate Park", 2, bank, Color.ORANGE));// 6
-        properties.put(11, new Property("Swim Pool", 2, bank, Color.ORANGE));// 7
-        properties.put(13, new Property("Casino", 3, bank, Color.RED));// 8
-        properties.put(14, new Property("Cinema", 3, bank, Color.RED));// 9
-        properties.put(16, new Property("Toy Store", 3, bank, Color.YELLOW));// 10
-        properties.put(17, new Property("Pet Shop", 3, bank, Color.YELLOW));// 11
-        properties.put(19, new Property("Bowling Alley", 4, bank, Color.GREEN));// 12
-        properties.put(20, new Property("Zoo", 4, bank, Color.GREEN));// 13
-        properties.put(22, new Property("Water World", 5, bank, Color.DARKBLUE));// 14
-        properties.put(23, new Property("Beach Way", 5, bank, Color.DARKBLUE));// 15
+        properties.put(1, new Property(Textreader.getTextLineToPrint(0), 1, bank, Color.BROWN));// 0
+        properties.put(2, new Property(Textreader.getTextLineToPrint(1), 1, bank, Color.BROWN));// 1
+        properties.put(4, new Property(Textreader.getTextLineToPrint(2), 1, bank, Color.LIGHTBLUE));// 2
+        properties.put(5, new Property(Textreader.getTextLineToPrint(3), 1, bank, Color.LIGHTBLUE));// 3
+        properties.put(7, new Property(Textreader.getTextLineToPrint(4), 2, bank, Color.PURPLE));// 4
+        properties.put(8, new Property(Textreader.getTextLineToPrint(5), 2, bank, Color.PURPLE));// 5
+        properties.put(10, new Property(Textreader.getTextLineToPrint(6), 2, bank, Color.ORANGE));// 6
+        properties.put(11, new Property(Textreader.getTextLineToPrint(7), 2, bank, Color.ORANGE));// 7
+        properties.put(13, new Property(Textreader.getTextLineToPrint(8), 3, bank, Color.RED));// 8
+        properties.put(14, new Property(Textreader.getTextLineToPrint(9), 3, bank, Color.RED));// 9
+        properties.put(16, new Property(Textreader.getTextLineToPrint(10), 3, bank, Color.YELLOW));// 10
+        properties.put(17, new Property(Textreader.getTextLineToPrint(11), 3, bank, Color.YELLOW));// 11
+        properties.put(19, new Property(Textreader.getTextLineToPrint(12), 4, bank, Color.GREEN));// 12
+        properties.put(20, new Property(Textreader.getTextLineToPrint(13), 4, bank, Color.GREEN));// 13
+        properties.put(22, new Property(Textreader.getTextLineToPrint(14), 5, bank, Color.DARKBLUE));// 14
+        properties.put(23, new Property(Textreader.getTextLineToPrint(15), 5, bank, Color.DARKBLUE));// 15
 
         propertyManager = new PropertyManager(properties);
     }
