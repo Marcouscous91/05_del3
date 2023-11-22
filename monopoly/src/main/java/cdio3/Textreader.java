@@ -11,7 +11,7 @@ class Textreader {
 
     public static void loadFile(String filename){
         // Creates the absolute path name of the file
-        Path currentRelPath = Paths.get("src\\main\\java\\cdio3\\" + filename);
+        Path currentRelPath = Paths.get("src","main","java","cdio3", filename);
         String pathName = currentRelPath.toAbsolutePath().toString();
         File file = new File(pathName);
         int lines = 0;
