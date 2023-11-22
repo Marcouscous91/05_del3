@@ -72,7 +72,6 @@ class Player extends Actor{
         if(position > 23){
             position -= 23;
             passStart = true;
-            //System.out.println("You passed start, you get 2M");
         }
         return passStart;
     }
