@@ -5,6 +5,10 @@ import java.util.Scanner;
 class Monopoly {
     public static void main(String[] args) {
         System.out.println("Enter desired language / indtast foretrukne sprog [DK / EN]:");
+        initializeGame();
+    }
+        
+    public static void initializeGame() {
         Scanner scanner = new Scanner(System.in);
         String language = scanner.nextLine();
         language = language.toLowerCase();
@@ -18,7 +22,7 @@ class Monopoly {
         }
         } catch (IllegalArgumentException a) {
             System.out.println("\nEnter EN / indtast DK");
-            
+            initializeGame();
         }
         play();
     }
