@@ -96,6 +96,7 @@ class Game {
         boolean passStart = currentPlayer.move(dieSum);
         if (passStart) {
             bank.transferMoney(currentPlayer, 2);
+            System.out.println(Textreader.getTextLineToPrint(36));
         }
         String nameOfField = board.getField(currentPlayer.getPosition()).getName();
         System.out.println("\n" + Textreader.getTextLineToPrint(32) + nameOfField);// 32
