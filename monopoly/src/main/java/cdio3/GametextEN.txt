@@ -45,10 +45,4 @@
 =============================
 34:Number of Players, must be a number between 2 and 4.
 35:Enter number of players,
-<<<<<<< HEAD:monopoly/src/main/java/cdio3/Gametext.txt
-
-36:You passed start, you get 2M
-=======
 36:You passed start, you get 2.0 M
-
->>>>>>> languageFix:monopoly/src/main/java/cdio3/GametextEN.txt
