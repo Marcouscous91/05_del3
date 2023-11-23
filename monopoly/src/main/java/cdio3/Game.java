@@ -228,6 +228,8 @@ class Game {
         die.roll();
         int dieSum = die.getFaceValue();
         continueGame = movePlayer(dieSum);
+        
+        System.out.println("\n"+ Textreader.getTextLineToPrint(37)+ " " + player.getBalance() + "\n");
         return continueGame;
     }
 }

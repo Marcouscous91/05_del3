@@ -41,6 +41,7 @@
 31:Tak fordi du spillede
 32:Du landede paa 
 33:Indtast spillerens navn 
+37:Her er hvor mange M du har: 
 
 //Monopoly.java// - OK
 =============================

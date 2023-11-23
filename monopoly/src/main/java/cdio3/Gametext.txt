@@ -22,7 +22,7 @@
 16:You bought 
 17: for 
 18: M
-19:You do not have enough money to buy 
+19:You don’t have enough money to buy 
 20:You paid 
 21: M to 
 22: in rent
@@ -40,10 +40,10 @@
 31:Thank you for playing
 32:You landed on 
 33:Enter name of Player 
-37:Here is how much M you have: 
 
 //Monopoly.java// - OK
 =============================
 34:Number of Players, must be a number between 2 and 4.
 35:Enter number of players,
-36:You passed start, you get 2.0 M
+
+36:You passed start, you get 2M
