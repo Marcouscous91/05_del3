@@ -40,7 +40,7 @@
 31:Thank you for playing
 32:You landed on 
 33:Enter name of Player 
-37:Here is how much M you have: 
+37:Here is how much M you have 
 
 //Monopoly.java// - OK
 =============================
