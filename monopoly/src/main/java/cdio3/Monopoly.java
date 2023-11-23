@@ -4,13 +4,25 @@ import java.util.Scanner;
 
 class Monopoly {
     public static void main(String[] args) {
-        System.out.println("Enter desired language / indtast foretrukne sprog [dk / en]:");
+        System.out.println("Enter desired language / indtast foretrukne sprog [DK / EN]:");
+        initializeGame();
+    }
+        
+    public static void initializeGame() {
         Scanner scanner = new Scanner(System.in);
         String language = scanner.nextLine();
+        language = language.toLowerCase();
+        try{
         if (language.equals("en")) {
-            Textreader.loadFile("Gametext.txt");
+            Textreader.loadFile("GametextEN.txt");
+        } else if (language.equals("dk")) {
+            Textreader.loadFile("GametextDK.txt");
         } else {
-            Textreader.loadFile("Gametext.txt");
+            throw new IllegalArgumentException();
+        }
+        } catch (IllegalArgumentException a) {
+            System.out.println("\nEnter EN / indtast DK");
+            initializeGame();
         }
         play();
     }
