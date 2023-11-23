@@ -22,7 +22,7 @@
 16:You bought 
 17: for 
 18: M
-19:You don’t have enough money to buy 
+19:You do not have enough money to buy 
 20:You paid 
 21: M to 
 22: in rent
