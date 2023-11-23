@@ -6,6 +6,7 @@ class Monopoly {
     public static void main(String[] args) {
         System.out.println("Enter desired language / indtast foretrukne sprog [DK / EN]:");
         initializeGame();
+        play();
     }
         
     public static void initializeGame() {
@@ -24,7 +25,6 @@ class Monopoly {
             System.out.println("\nEnter EN / indtast DK");
             initializeGame();
         }
-        play();
     }
 
     public static void play() {
