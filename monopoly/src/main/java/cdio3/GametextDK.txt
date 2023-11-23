@@ -1,0 +1,50 @@
+
+//Board.java// - OK
+=============================
+0:Burgerpaladset
+1:Pizzahimlen
+2:Slikbutikken
+3:Isbutik
+4:Museet
+5:Biblioteket
+6:Skaterpark
+7:Svoemmebassin
+8:Kasino
+9:Biograf
+10:Legetoejsbutik
+11:Dyrehandel
+12:Bowlinghal
+13:Zoo
+14:Vandland
+15:Strandpromenade
+
+//Fields.java// - OK
+=============================
+16:Du koebte 
+17: for 
+18: M
+19:Du har ikke nok penge til at koebe 
+20:Du betalte 
+21: M til 
+22: i leje
+23:Du er faerdig, gaa i faengsel
+24:Du besoeger faengslet
+25:Fantastisk, gratis parkering!
+26:Dette er en chancefelt, det goer ikke noget
+
+//Game.java//
+=============================
+27:, tryk venligst paa enter for at slaa terningerne!
+28:Tillykke!
+29: vinder spillet, med et totalbeloeb af 
+30: M, og vinder titlen som den stoerste kapitalistiske gris!
+31:Tak fordi du spillede
+32:Du landede paa 
+33:Indtast spillerens navn 
+37:Her er hvor mange M du har 
+
+//Monopoly.java// - OK
+=============================
+34:Antal spillere, skal vaere et tal mellem 2 og 4.
+35:Indtast antal spillere,
+36:Du passerede start, du faar 2.0 M

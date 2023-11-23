@@ -1,0 +1,49 @@
+//Board.java// - OK
+=============================
+0:Burger Palace
+1:Pizza Heaven
+2:Candy Store
+3:Ice Shop
+4:Museum
+5:Library
+6:Skate Park
+7:Swim Pool
+8:Casino
+9:Cinema
+10:Toy Store
+11:Pet Shop
+12:Bowling Alley
+13:Zoo
+14:Water World
+15:Promenade
+
+//Fields.java// - OK
+=============================
+16:You bought 
+17: for 
+18: M
+19:You do not have enough money to buy 
+20:You paid 
+21: M to 
+22: in rent
+23:You are done, go to prison
+24:You are visiting prison
+25:Great, free parking!
+26:This is a chance field, it does not do anything
+
+//Game.java//
+=============================
+27:, please press enter to roll dice!
+28:Congratulations!
+29: wins the game, with a total amount of 
+30: M, and wins the title of Biggest Capitalist Pig!
+31:Thank you for playing
+32:You landed on 
+33:Enter name of Player 
+37:Here is how much M you have 
+
+//Monopoly.java// - OK
+=============================
+34:Number of Players, must be a number between 2 and 4.
+35:Enter number of players,
+36:You passed start, you get 2.0 M
